@@ -42,6 +42,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { createClient } from "@/lib/supabase/client"
+import Image from "next/image"
 
 const navMain = [
   { title: "Overview", href: "/admin", icon: LayoutDashboard },
@@ -155,12 +156,10 @@ export function AdminSidebar({ profile, ...props }: AdminSidebarProps) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/admin">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-destructive text-destructive-foreground">
-                  <ShieldAlert className="size-4" />
-                </div>
+                <Image src="/Logo.png" alt="Golf Draw" width={36} height={36} className="rounded-full" />
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Admin Console</span>
-                  <span className="truncate text-xs text-destructive font-medium">Restricted Access</span>
+                  <span className="truncate font-semibold">Golf Club</span>
+                  <span className="truncate text-xs text-primary font-medium">Admin Console</span>
                 </div>
               </Link>
             </SidebarMenuButton>

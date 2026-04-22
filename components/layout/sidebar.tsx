@@ -48,6 +48,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { createClient } from "@/lib/supabase/client"
+import Image from "next/image"
 
 const navMain = [
   {
@@ -200,11 +201,9 @@ export function AppSidebar({ profile, ...props }: AppSidebarProps) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Flag className="size-4" />
-                </div>
+                <Image src="/Logo.png" alt="Golf Draw" width={36} height={36} className="rounded-full" />
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Golf Draw</span>
+                  <span className="truncate font-semibold">Golf Club</span>
                   <span className="truncate text-xs">Monthly draws</span>
                 </div>
               </Link>

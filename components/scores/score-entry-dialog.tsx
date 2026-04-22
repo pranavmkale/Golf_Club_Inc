@@ -38,6 +38,7 @@ export function ScoreEntryDialog({
   open: controlledOpen,
   onOpenChange: setControlledOpen,
   onSuccess,
+  trigger,
 }: ScoreEntryDialogProps) {
   const [internalOpen, setInternalOpen] = React.useState(false)
   const [date, setDate] = React.useState<Date>(new Date())
@@ -58,17 +59,21 @@ export function ScoreEntryDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button className="shrink-0 gap-2">
-                <Plus className="h-4 w-4" />
-                Add score
-              </Button>
-            </TooltipTrigger>
-          </Tooltip>
-        </TooltipProvider>
+      <DialogTrigger asChild>
+        {trigger ?? (
+          <span className="inline-flex">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button className="shrink-0 gap-2">
+                    <Plus className="h-4 w-4" />
+                    Add score
+                  </Button>
+                </TooltipTrigger>
+              </Tooltip>
+            </TooltipProvider>
+          </span>
+        )}
       </DialogTrigger>
       <DialogContent className="border-border/50 bg-background/95 backdrop-blur-md sm:max-w-md">
         <DialogHeader>
