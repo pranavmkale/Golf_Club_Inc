@@ -1,0 +1,41 @@
+import { ReactNode } from "react"
+import { cn } from "@/lib/utils"
+
+interface PageHeaderProps {
+  title: string
+  description?: string
+  children?: ReactNode
+  className?: string
+}
+
+export function PageHeader({
+  title,
+  description,
+  children,
+  className,
+}: PageHeaderProps) {
+  return (
+    <header
+      className={cn(
+        "mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between",
+        className
+      )}
+    >
+      <div>
+        <h1 className="text-2xl font-black tracking-tight luma-gradient-text sm:text-3xl">
+          {title}
+        </h1>
+        {description && (
+          <p className="text-muted-foreground">
+            {description}
+          </p>
+        )}
+      </div>
+      {children && (
+        <div className="flex items-center gap-3">
+          {children}
+        </div>
+      )}
+    </header>
+  )
+}

@@ -1,0 +1,82 @@
+"use client"
+
+import { CheckCircle2 } from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import type { Charity } from "@/lib/types/database"
+import { cn } from "@/lib/utils"
+
+interface CharityBrowserGridProps {
+  charities: Charity[]
+  currentCharityId: string | null
+  selectedId: string | null
+  onSelect: (charityId: string) => void
+}
+
+export function CharityBrowserGrid({
+  charities,
+  currentCharityId,
+  selectedId,
+  onSelect,
+}: CharityBrowserGridProps) {
+  if (charities.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center p-8 text-center">
+        <p className="text-sm text-muted-foreground">No charities found</p>
+        <p className="text-xs text-muted-foreground/60">Try a different search term</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="grid gap-2 max-h-[400px] overflow-y-auto pr-1">
+      {charities.map((charity) => {
+        const isCurrent = charity.id === currentCharityId
+        const isSelected = charity.id === selectedId
+
+        return (
+          <button
+            key={charity.id}
+            onClick={() => !isCurrent && onSelect(charity.id)}
+            disabled={isCurrent}
+            className={cn(
+              "flex flex-row items-center gap-4 rounded-xl border p-3 text-left transition-all",
+              isCurrent
+                ? "border-emerald-500/20 bg-emerald-500/5 cursor-default opacity-80"
+                : isSelected
+                ? "border-primary bg-primary/5 ring-1 ring-primary"
+                : "border-border/50 bg-card hover:border-primary/30 hover:bg-accent/30"
+            )}
+          >
+            <Avatar className="h-10 w-10 shrink-0 border border-border/10 shadow-sm">
+              <AvatarImage src={charity.logo_url || ""} alt={charity.name} />
+              <AvatarFallback className="bg-primary/10 text-primary font-bold">
+                {charity.name.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+
+            <div className="flex-1 min-w-0 space-y-0.5">
+              <p className="text-sm font-bold truncate tracking-tight">{charity.name}</p>
+              <p className="text-xs text-muted-foreground line-clamp-2 leading-snug">
+                {charity.description}
+              </p>
+            </div>
+
+            <div className="shrink-0 pl-1">
+              {isCurrent ? (
+                <div className="flex items-center gap-1 text-emerald-600">
+                  <CheckCircle2 className="h-4 w-4" />
+                  <span className="text-[10px] font-bold uppercase tracking-wider">Current</span>
+                </div>
+              ) : (
+                <Button variant="outline" size="sm" className="h-7 text-[10px] uppercase font-bold tracking-wider px-3">
+                  {isSelected ? "Selected" : "Select"}
+                </Button>
+              )}
+            </div>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
