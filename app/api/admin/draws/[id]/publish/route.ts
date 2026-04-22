@@ -29,8 +29,8 @@ export async function POST(
     if (!profile?.is_admin) return NextResponse.json({ error: "Forbidden" }, { status: 403 })
 
     // 1. Update draw status
-    const { data: draw, error: drawError } = await supabaseAdmin
-      .from("draws")
+    const { data: draw, error: drawError } = await (supabaseAdmin
+      .from("draws") as any)
       .update({
         status: "published",
         published_at: new Date().toISOString(),

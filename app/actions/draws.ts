@@ -9,9 +9,9 @@ export async function createDrawAction() {
   const now = new Date()
   const nextMonth = startOfMonth(addMonths(now, 1))
 
-  const { data, error } = await supabase
-    .from("draws")
-    .insert<Database["public"]["Tables"]["draws"]["Insert"]>({
+  const { data, error } = await (supabase
+    .from("draws") as any)
+    .insert({
       draw_month: nextMonth.toISOString(),
       status: "draft",
       draw_type: "random",

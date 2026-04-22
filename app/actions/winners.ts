@@ -50,8 +50,8 @@ export async function submitProofAction(winnerId: string, formData: FormData) {
     .getPublicUrl(filePath)
 
   // 4. Update the winner record
-  const { error: updateError } = await supabaseAdmin
-    .from("winners")
+  const { error: updateError } = await (supabaseAdmin
+    .from("winners") as any)
     .update({ 
       proof_url: publicUrl,
       verification_status: "pending" // Reset status to pending on re-upload

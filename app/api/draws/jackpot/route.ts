@@ -28,8 +28,8 @@ export async function GET() {
     const totalJackpot = pools.jackpot + rollover
 
     // 5. Check if the last draw resulted in a rollover to show badges
-    const { data: lastDraw } = await supabaseAdmin
-      .from("draws")
+    const { data: lastDraw } = await (supabaseAdmin
+      .from("draws") as any)
       .select("jackpot_rolled_over")
       .eq("status", "published")
       .order("draw_month", { ascending: false })

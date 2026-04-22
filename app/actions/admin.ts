@@ -28,8 +28,8 @@ async function verifyAdmin() {
 export async function updateUserAdminAction(userId: string, data: any) {
   await verifyAdmin()
 
-  const { error } = await supabaseAdmin
-    .from("profiles")
+  const { error } = await (supabaseAdmin
+    .from("profiles") as any)
     .update(data)
     .eq("id", userId)
 
@@ -44,8 +44,8 @@ export async function updateUserAdminAction(userId: string, data: any) {
 export async function approveWinnerAction(winnerId: string) {
   await verifyAdmin()
 
-  const { error } = await supabaseAdmin
-    .from("winners")
+  const { error } = await (supabaseAdmin
+    .from("winners") as any)
     .update({ verification_status: "approved" })
     .eq("id", winnerId)
 
@@ -60,8 +60,8 @@ export async function approveWinnerAction(winnerId: string) {
 export async function rejectWinnerAction(winnerId: string, reason: string) {
   await verifyAdmin()
 
-  const { error } = await supabaseAdmin
-    .from("winners")
+  const { error } = await (supabaseAdmin
+    .from("winners") as any)
     .update({ 
       verification_status: "rejected",
       rejection_reason: reason 
@@ -79,8 +79,8 @@ export async function rejectWinnerAction(winnerId: string, reason: string) {
 export async function markAsPaidAction(winnerId: string) {
   await verifyAdmin()
 
-  const { error } = await supabaseAdmin
-    .from("winners")
+  const { error } = await (supabaseAdmin
+    .from("winners") as any)
     .update({ payout_status: "paid", paid_at: new Date().toISOString() })
     .eq("id", winnerId)
 
@@ -95,8 +95,8 @@ export async function markAsPaidAction(winnerId: string) {
 export async function toggleCharityAdminAction(charityId: string, data: { is_active?: boolean; is_featured?: boolean }) {
   await verifyAdmin()
 
-  const { error } = await supabaseAdmin
-    .from("charities")
+  const { error } = await (supabaseAdmin
+    .from("charities") as any)
     .update(data)
     .eq("id", charityId)
 

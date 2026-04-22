@@ -7,7 +7,7 @@ interface CharitySpotlightProps {
   charity: any
 }
 
-export function CharitySpotlightSection({ charity }: { charity: charitySpotlightProps["charity"] }) {
+export function CharitySpotlightSection({ charity }: { charity: CharitySpotlightProps["charity"] }) {
   if (!charity) return null
 
   return (
