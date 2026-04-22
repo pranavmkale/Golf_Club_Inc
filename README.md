@@ -1,96 +1,289 @@
-# Luma - Premium Next.js Admin Template configured with Shadcn UI
+# Golf Club Inc.
 
-<div align="center">
-  <img src="https://shadcn-template-luma.vercel.app/Dashboard.png" alt="Luma Template Cover" width="100%" />
+A **Golf · Charity · Monthly Draws** platform that combines golf scoring with charitable giving and prize draws.
 
-  <p align="center">
-    A premium, high-fidelity landing page and dashboard template built with Next.js 15, Tailwind CSS, and shadcn/ui.
-  </p>
+![Logo](public/Logo.png)
 
-[![GitHub stars](https://img.shields.io/github/stars/PranavKale03/shadcn-template-luma?style=flat-square&color=blue)](https://github.com/PranavKale03/shadcn-template-luma/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/PranavKale03/shadcn-template-luma?style=flat-square&color=blue)](https://github.com/PranavKale03/shadcn-template-luma/network/members)
-[![Next.js](https://img.shields.io/badge/Next.js-15-blue?style=flat-square&logo=next.js)](https://nextjs.org/)
-[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-latest-blue?style=flat-square)](https://ui.shadcn.com/)
+## Overview
 
-</div>
+Golf Club Inc. is a subscription-based platform where golf enthusiasts can:
 
-## ✨ Features
+- Subscribe monthly or yearly to participate in monthly prize draws
+- Enter their Stableford golf scores (up to 5 most recent scores)
+- Be automatically entered into monthly prize draws based on their scores
+- Automatically donate a percentage of their subscription to a charity of their choice
+- Win cash prizes from tiered jackpot pools
 
-- **Next.js 15 App Router:** Leveraging the latest Next.js features and server components.
-- **Route Groups Architecture:** Clean, isolated routing for `(dashboard)` ensuring separation from landing page logic.
-- **Premium Aesthetics:** Custom `Luma` glassmorphism, animated gradients, and high-fidelity hovering effects right out of the box.
-- **Dual Theme Support:** Seamless Dark and Light mode powered by `next-themes`.
-- **Pre-built Dashboard Structure:** Fully functioning layouts for `/dashboard`, `/profile`, and `/settings` routes.
-- **shadcn/ui Integration:** Beautifully styled, accessible components ready for modification.
-- **SEO Ready:** Native Next.js metadata implementation on all routes.
-- **Responsive Design:** Flawlessly adapts to any screen size from mobile to ultra-wide desktop.
+**Live Demo**: [https://golf-club-inc.vercel.app](https://golf-club-inc.vercel.app)
 
-## 🚀 Getting Started
+## Core Concept
 
-To get started with Luma locally on your machine, follow these simple steps:
+Users subscribe, enter golf scores, and their last 5 scores become their "draw entry numbers" (1-45). When winning numbers are drawn monthly, users win prizes based on how many of their scores match the drawn numbers.
 
-### 1. Clone the repository
+## Features
 
-```bash
-git clone https://github.com/PranavKale03/shadcn-template-luma.git
+### User Features
+
+- **Authentication**: Email/password registration, login, password reset
+- **Score Entry**: Enter and manage Stableford scores (1-45 points)
+- **Monthly Draws**: Automatic entry based on 5 most recent scores
+- **Charity Selection**: Choose from featured charities and set contribution percentage
+- **Winning History**: View past wins and claim prizes
+- **Subscription Management**: Manage monthly/yearly plans via Stripe
+
+### Admin Features
+
+- **Analytics Dashboard**: View user growth, draw statistics, charity contributions
+- **Draw Management**: Initialize, simulate, and publish monthly draws
+- **User Management**: Search and manage user accounts
+- **Charity Management**: Add, edit, and feature charities
+- **Winner Management**: View winners and manage prize distribution
+- **Reports & Export**: Export data for analysis
+
+## Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| **Framework** | Next.js 16 (App Router) |
+| **Language** | TypeScript 5 |
+| **Styling** | Tailwind CSS 4 |
+| **UI Components** | shadcn/ui |
+| **Database** | Supabase (PostgreSQL) |
+| **Auth** | Supabase Auth |
+| **Payments** | Stripe |
+| **Email** | Gmail SMTP |
+
+## Project Structure
+
+```
+golf/
+├── app/
+│   ├── (auth)/           # Auth pages (login, register, reset-password)
+│   ├── (dashboard)/      # Protected user dashboard
+│   │   ├── dashboard/    # Main overview
+│   │   ├── draws/        # Monthly draws
+│   │   ├── scores/       # Score entry & history
+│   │   ├── charity/      # Charity selection
+│   │   ├── winnings/     # Prize history
+│   │   ├── profile/      # User profile
+│   │   └── settings/     # Settings & subscription
+│   ├── (admin)/          # Admin dashboard
+│   │   └── admin/
+│   │       ├── draws/    # Draw management
+│   │       ├── users/    # User management
+│   │       ├── winners/  # Winner management
+│   │       ├── charities/# Charity management
+│   │       └── reports/  # Analytics & reports
+│   ├── (public)/         # Public landing page
+│   ├── api/              # API routes
+│   │   ├── webhooks/stripe/
+│   │   ├── admin/
+│   │   ├── draws/
+│   │   └── email/
+│   └── actions/          # Server Actions
+├── components/
+│   ├── ui/               # shadcn/ui components
+│   ├── landing/          # Landing page sections
+│   ├── dashboard/        # Dashboard widgets
+│   ├── draws/            # Draw components
+│   ├── charity/          # Charity components
+│   └── admin/            # Admin components
+├── lib/
+│   ├── types/            # TypeScript types
+│   ├── supabase/         # Supabase clients
+│   ├── stripe/           # Stripe helpers
+│   ├── draw/             # Draw logic & engine
+│   ├── scores/           # Score validation
+│   ├── charity/          # Contribution calculations
+│   ├── email/            # Email client & templates
+│   └── metadata.ts       # SEO metadata
+└── public/               # Static assets
 ```
 
-### 2. Install dependencies
+## Getting Started
 
-Navigate to the project directory and install the necessary packages using `pnpm` (or `npm`/`yarn`):
+### Prerequisites
 
+- Node.js 18+
+- pnpm (or npm/yarn)
+- Supabase account
+- Stripe account
+- Gmail account (for email notifications)
+
+### Installation
+
+1. Clone the repository:
 ```bash
-cd shadcn-template-luma
+git clone https://github.com/pranavmkale/Golf_Club_Inc.git
+cd golf
+```
+
+2. Install dependencies:
+```bash
 pnpm install
 ```
 
-### 3. Run the development server
+3. Run the development server:
+```bash
+pnpm dev
+```
 
-Start the Next.js development server:
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Environment Variables
+
+Create a `.env` file with the following variables:
 
 ```bash
-pnpm run dev
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL                =       https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY           =       your-anon-key
+SUPABASE_SERVICE_ROLE_KEY               =       your-service-role-key
+
+# Stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY      =       pk_test_...
+STRIPE_SECRET_KEY                       =       sk_test_...
+STRIPE_WEBHOOK_SECRET                   =       whsec_...
+STRIPE_MONTHLY_PRICE_ID                 =       price_...
+STRIPE_YEARLY_PRICE_ID                  =       price_...
+
+# App URL
+NEXT_PUBLIC_APP_URL                     =       http://localhost:3000
+
+# Email (Gmail SMTP)
+GMAIL_USER                              =       your-email@gmail.com
+GMAIL_APP_PASSWORD                      =       your-app-password
 ```
 
-The application will be running at `http://localhost:3000`.
+### Supabase Setup
 
-## 📂 Project Structure
+1. Create a new project on [Supabase](https://supabase.com)
+2. Run the database migrations from `/supabase/migrations/`
+3. Enable Email Auth provider
+4. Configure Gmail SMTP in Auth settings for transactional emails
+5. Set Row Level Security (RLS) policies for tables
 
-```text
-├── app/
-│   ├── (dashboard)/            # Route Group for all dashboard-related protected routes
-│   │   ├── dashboard/          # Analytics and metric overview page
-│   │   ├── profile/            # User profile management
-│   │   ├── settings/           # App configuration settings
-│   │   └── layout.tsx          # Shared Sidebar wrapper context
-│   ├── globals.css             # Theme variables & custom Luma UI animations
-│   ├── layout.tsx              # Root Next.js layout (Providers, Fonts)
-│   └── page.tsx                # High-fidelity Landing Page
-├── components/
-│   ├── landing/                # Modular landing page components (Hero, Navbar, Footer)
-│   ├── ui/                     # shadcn/ui primitive components
-│   └── app-sidebar.tsx         # Dashboard interactive sidebar
-└── lib/                        # Utility functions (Tailwind merges, etc.)
+### Stripe Setup
+
+1. Create a [Stripe](https://stripe.com) account
+2. Create two products: Monthly and Yearly subscriptions
+3. Get the Price IDs and add to `.env`
+4. Configure webhook endpoint: `/api/webhooks/stripe`
+5. Add webhook events: `customer.subscription.created`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_failed`
+
+## Database Schema
+
+### Core Tables
+
+| Table | Description |
+|-------|-------------|
+| **profiles** | User profiles, subscription status, stripe customer IDs |
+| **scores** | User golf scores (Stableford points, 1-45) |
+| **draws** | Monthly draws (status, winning numbers, prize amounts) |
+| **draw_entries** | User entries per draw (entry numbers, matches) |
+| **winners** | Prize winners (tier, amount, verification status) |
+| **charities** | Charity information (name, logo, description) |
+| **charity_contributions** | Donation records (user, charity, amount) |
+
+## How It Works
+
+### Draw System
+
+1. **Entry Numbers**: User's 5 most recent scores become their entry numbers (1-45 range)
+2. **Draw Generation**: Admin initializes a draw which generates 5 random winning numbers
+3. **Matching**: User entries are matched against winning numbers
+4. **Prize Tiers**:
+   - **Jackpot (5 matches)**: 40% of prize pool
+   - **Tier 4 (4 matches)**: 35% of prize pool
+   - **Tier 3 (3 matches)**: 25% of prize pool
+5. **Unclaimed Jackpots**: Roll over to next month's pool
+
+### Subscription Flow
+
+1. User subscribes via Stripe Checkout
+2. Webhook updates user profile with subscription status
+3. Active subscribers can enter scores and participate in draws
+4. Monthly billing handled by Stripe
+
+### Charity Contributions
+
+- Default 10% of subscription goes to user's selected charity
+- Percentage is adjustable by the user
+- Contributions tracked per billing period
+- Charities receive aggregated donations
+
+## API Routes
+
+| Route | Description |
+|-------|-------------|
+| `POST /api/webhooks/stripe` | Stripe webhook handler |
+| `POST /api/admin/draws` | Initialize new draw |
+| `POST /api/admin/draws/[id]/publish` | Publish draw and notify winners |
+| `POST /api/email/winner-notification` | Send winner emails |
+| `GET /api/draws/jackpot` | Public jackpot amount |
+
+## Server Actions
+
+| Action | Purpose |
+|--------|---------|
+| `signIn/signUp` | Authentication |
+| `updateUserAdminAction` | Admin user management |
+| `approveWinnerAction` | Approve winner verification |
+| `markAsPaidAction` | Mark prize as paid |
+| `createDrawAction` | Create new draw |
+| `submitProofAction` | Submit winner score proof |
+| `cancelSubscriptionAction` | Cancel Stripe subscription |
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push code to GitHub
+2. Import project on [Vercel](https://vercel.com)
+3. Add environment variables in Vercel dashboard
+4. Deploy
+
+### Environment Variables for Production
+
+Update `NEXT_PUBLIC_APP_URL` to your production domain:
+```bash
+NEXT_PUBLIC_APP_URL=https://your-domain.com
 ```
 
-## 🛠️ Built With
+## Key Features Explained
 
-- [Next.js 15](https://nextjs.org/) - The React Framework for the Web
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [shadcn/ui](https://ui.shadcn.com/) - Beautifully designed components that you can copy and paste
-- [Lucide React](https://lucide.dev/) - Simply beautiful open source icons
-- [next-themes](https://github.com/pacocoursey/next-themes) - Perfect Next.js dark mode
+### Score Entry System
+- Users can enter up to 5 recent Stableford scores
+- Each score becomes an "entry number" (1-45 range)
+- More scores = more chances to win (higher tiers)
 
-## 🤝 Contributing
+### Prize Pool Calculation
+- Prize pool is 40% of monthly subscription revenue
+- Rolled-over jackpots add to the pool
+- Distributed across 3 winning tiers
 
-Contributions are always welcome! If you have any suggestions, improvements, or feature requests, feel free to open an issue or submit a pull request.
+### Winner Verification
+- Winners must upload scorecard proof
+- Admin verifies proof before payout
+- Prevents fraud and ensures fair play
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+## Troubleshooting
 
-## 📄 License
+### Common Issues
 
-This project is open-source and available under the terms of the MIT License.
+1. **Stripe webhooks not working**: Ensure webhook secret is correct and endpoint is accessible
+2. **Email not sending**: Check Gmail App Password is correct and 2FA is enabled
+3. **Database errors**: Verify Supabase RLS policies are configured
+4. **Type errors**: Ensure `as any` type assertions are in place for Supabase queries
+
+## License
+
+MIT License - feel free to use for personal or commercial projects.
+
+## Support
+
+For support, email pranavmkale99@gmail.com or open an issue on GitHub.
+
+---
+
+Built with Next.js, Supabase, Stripe, and Tailwind CSS.
