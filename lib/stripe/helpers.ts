@@ -1,5 +1,6 @@
 import "server-only"
 import { stripe } from "./client"
+import { getSiteUrl } from "@/lib/site-url"
 
 /**
  * Creates a Stripe customer and returns the customer ID.
@@ -20,6 +21,8 @@ export async function createCheckoutSession(
   priceId: string,
   userId: string
 ) {
+  const siteUrl = getSiteUrl()
+
   const session = await stripe.checkout.sessions.create({
     customer: customerId,
     mode: "subscription",
@@ -29,8 +32,8 @@ export async function createCheckoutSession(
         quantity: 1,
       },
     ],
-    success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?subscribed=true`,
-    cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/pricing`,
+    success_url: `${siteUrl}/dashboard?subscribed=true`,
+    cancel_url: `${siteUrl}/pricing`,
     metadata: {
       userId,
     },
@@ -47,9 +50,11 @@ export async function createCheckoutSession(
  * Creates a Stripe Billing Portal session for customer subscription management.
  */
 export async function createPortalSession(customerId: string) {
+  const siteUrl = getSiteUrl()
+
   const session = await stripe.billingPortal.sessions.create({
     customer: customerId,
-    return_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
+    return_url: `${siteUrl}/dashboard`,
   })
 
   return session.url

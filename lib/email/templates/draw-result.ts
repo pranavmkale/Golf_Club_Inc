@@ -1,3 +1,5 @@
+import { getSiteUrl } from "@/lib/site-url"
+
 /**
  * drawResultEmail - Notifies users of the monthly draw outcomes.
  */
@@ -12,7 +14,7 @@ export function drawResultEmail(
     drawDate: string
   }
 ) {
-  const resultsUrl = `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
+  const resultsUrl = `${getSiteUrl()}/dashboard`
   
   const winnerBadge = `
     <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 24px; border-radius: 12px; text-align: center; margin: 24px 0;">

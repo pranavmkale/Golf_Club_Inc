@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase/server"
 import { supabaseAdmin } from "@/lib/supabase/admin"
+import { getSiteUrl } from "@/lib/site-url"
 
 /**
  * Stub for sending winner emails.
@@ -43,7 +44,7 @@ export async function POST(
 
     // 2. Trigger Winner Notifications
     // We call our internal notification API to handle bulk dispatch
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+    const baseUrl = getSiteUrl()
     try {
       await fetch(`${baseUrl}/api/email/winner-notification`, {
         method: "POST",

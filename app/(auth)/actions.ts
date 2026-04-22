@@ -5,6 +5,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin"
 import { redirect } from "next/navigation"
 import { sendEmail } from "@/lib/email/client"
 import { welcomeEmail } from "@/lib/email/templates/welcome"
+import { getSiteUrl } from "@/lib/site-url"
 
 export async function signIn(prevState: any, formData: FormData) {
   const email = formData.get("email") as string
@@ -80,9 +81,10 @@ export async function forgotPassword(prevState: any, formData: FormData) {
   }
 
   const supabase = await createClient()
+  const siteUrl = getSiteUrl()
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback?next=/reset-password`,
+    redirectTo: `${siteUrl}/auth/callback?next=/reset-password`,
   })
 
   if (error) {

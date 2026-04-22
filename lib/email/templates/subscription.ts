@@ -1,3 +1,5 @@
+import { getSiteUrl } from "@/lib/site-url"
+
 /**
  * subscriptionConfirmEmail - Confirmation for successful payment.
  */
@@ -29,7 +31,7 @@ export function subscriptionConfirmEmail(name: string, plan: string, amount: num
  * paymentFailedEmail - Notification for failed payment.
  */
 export function paymentFailedEmail(name: string, renewalDate: string) {
-  const billingUrl = `${process.env.NEXT_PUBLIC_APP_URL}/settings/subscription`
+  const billingUrl = `${getSiteUrl()}/settings/subscription`
 
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1a1a1a;">

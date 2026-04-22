@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
+import { getSiteUrl } from "@/lib/site-url"
 
 const APP_NAME = "Golf Club Inc."
 const APP_DESCRIPTION = "Support causes while you play. Join our golf community and make a difference with every game."
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://golfclubinc.com"
+const APP_URL = getSiteUrl()
 
 export const defaultMetadata: Metadata = {
   title: {

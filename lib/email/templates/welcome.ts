@@ -1,8 +1,10 @@
+import { getSiteUrl } from "@/lib/site-url"
+
 /**
  * welcomeEmail - Welcome template for new users.
  */
 export function welcomeEmail(name: string) {
-  const dashboardUrl = `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`
+  const dashboardUrl = `${getSiteUrl()}/dashboard`
   
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1a1a1a;">
