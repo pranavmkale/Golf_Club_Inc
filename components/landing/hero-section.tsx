@@ -1,11 +1,9 @@
 "use client"
 
-import * as React from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Trophy, Heart, Calendar } from "lucide-react"
-import { format, endOfMonth } from "date-fns"
 
 interface HeroSectionProps {
   activeSubscriberCount: number
@@ -24,16 +22,16 @@ export function HeroSection({ activeSubscriberCount, nextDrawDate }: HeroSection
         }}
       />
 
-      <div className="container mx-auto grid gap-16 px-6 py-28 lg:grid-cols-2 lg:items-center lg:py-0 lg:min-h-svh">
+      <div className="container mx-auto grid gap-16 px-6 py-28 lg:min-h-svh lg:max-w-6xl lg:grid-cols-[minmax(0,620px)_292px] lg:items-center lg:justify-between lg:gap-2 lg:py-0 xl:max-w-7xl xl:grid-cols-[minmax(0,700px)_360px] xl:gap-6">
         {/* ── LEFT: Text content ── */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 lg:max-w-none">
           {/* Eyebrow pill */}
           <div className="hero-animate hero-delay-0 inline-flex w-fit items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground backdrop-blur-sm">
             Golf · Charity · Monthly Draws
           </div>
 
           {/* H1 — word-by-word stagger */}
-          <h1 className="text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-[4rem] xl:text-7xl">
             <span className="hero-animate hero-delay-0 inline-block">Play</span>{" "}
             <span className="hero-animate hero-delay-1 inline-block">golf.</span>
             <br />
@@ -73,10 +71,10 @@ export function HeroSection({ activeSubscriberCount, nextDrawDate }: HeroSection
         </div>
 
         {/* ── RIGHT: Floating stat cards ── */}
-        <div className="relative hidden lg:flex lg:items-center lg:justify-center">
-          <div className="relative h-[420px] w-[380px]">
+        <div className="relative hidden lg:flex lg:items-center lg:justify-start">
+          <div className="relative h-90 w-80 lg:-translate-x-4 xl:-translate-x-2 xl:h-105 xl:w-95">
             {/* Card 1 — Jackpot */}
-            <Card className="stat-card stat-card-delay-0 absolute left-0 top-0 w-60 border-border/50 bg-card/80 backdrop-blur-md shadow-xl p-0">
+            <Card className="stat-card stat-card-delay-0 absolute left-0 top-0 w-52 border-border/50 bg-card/80 p-0 shadow-xl backdrop-blur-md xl:w-60">
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
                   <Trophy className="h-3.5 w-3.5 text-primary" />
@@ -90,7 +88,7 @@ export function HeroSection({ activeSubscriberCount, nextDrawDate }: HeroSection
             </Card>
 
             {/* Card 2 — Charities */}
-            <Card className="stat-card stat-card-delay-1 absolute right-0 top-24 w-56 border-border/50 bg-card/80 backdrop-blur-md shadow-xl p-0">
+            <Card className="stat-card stat-card-delay-1 absolute right-0 top-20 w-52 border-border/50 bg-card/80 p-0 shadow-xl backdrop-blur-md xl:top-24 xl:w-56">
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
                   <Heart className="h-3.5 w-3.5 text-primary" />
@@ -104,7 +102,7 @@ export function HeroSection({ activeSubscriberCount, nextDrawDate }: HeroSection
             </Card>
 
             {/* Card 3 — Next draw */}
-            <Card className="stat-card stat-card-delay-2 absolute bottom-0 left-8 w-56 border-border/50 bg-card/80 backdrop-blur-md shadow-xl p-0">
+            <Card className="stat-card stat-card-delay-2 absolute bottom-0 left-4 w-52 border-border/50 bg-card/80 p-0 shadow-xl backdrop-blur-md xl:left-8 xl:w-56">
               <CardContent className="p-5">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
                   <Calendar className="h-3.5 w-3.5 text-primary" />

@@ -2,8 +2,6 @@
 
 A **Golf · Charity · Monthly Draws** platform that combines golf scoring with charitable giving and prize draws.
 
-![Logo](public/Logo.png)
-
 ## Overview
 
 Golf Club Inc. is a subscription-based platform where golf enthusiasts can:
