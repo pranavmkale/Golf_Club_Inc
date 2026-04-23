@@ -26,7 +26,7 @@ export function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="py-24 border-y border-border/40 bg-muted/20"
+      className="py-24 border-y border-border/40 bg-muted/20 lg:px-24"
     >
       <div className="container mx-auto px-6">
         {/* Heading */}

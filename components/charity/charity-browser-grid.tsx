@@ -2,7 +2,6 @@
 
 import { CheckCircle2 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
 import type { Charity } from "@/lib/types/database"
 import { cn } from "@/lib/utils"
 
@@ -29,7 +28,7 @@ export function CharityBrowserGrid({
   }
 
   return (
-    <div className="grid gap-2 max-h-[400px] overflow-y-auto pr-1">
+    <div className="grid max-h-100 gap-2 overflow-y-auto pr-1">
       {charities.map((charity) => {
         const isCurrent = charity.id === currentCharityId
         const isSelected = charity.id === selectedId
@@ -69,9 +68,16 @@ export function CharityBrowserGrid({
                   <span className="text-[10px] font-bold uppercase tracking-wider">Current</span>
                 </div>
               ) : (
-                <Button variant="outline" size="sm" className="h-7 text-[10px] uppercase font-bold tracking-wider px-3">
+                <span
+                  className={cn(
+                    "inline-flex h-7 items-center rounded-4xl border px-3 text-[10px] font-bold uppercase tracking-wider",
+                    isSelected
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border/60 bg-background text-muted-foreground"
+                  )}
+                >
                   {isSelected ? "Selected" : "Select"}
-                </Button>
+                </span>
               )}
             </div>
           </button>

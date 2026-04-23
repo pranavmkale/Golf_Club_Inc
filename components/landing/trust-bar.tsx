@@ -1,8 +1,10 @@
+import { CircleDollarSign, HeartHandshake, RotateCcw, ShieldCheck } from "lucide-react"
+
 const items = [
-  { icon: "🔒", label: "Stripe-secured payments" },
-  { icon: "🎲", label: "Transparent monthly draws" },
-  { icon: "❤️", label: "Charity impact guaranteed" },
-  { icon: "🔄", label: "Cancel anytime" },
+  { icon: ShieldCheck, label: "Stripe-secured payments" },
+  { icon: CircleDollarSign, label: "Transparent monthly draws" },
+  { icon: HeartHandshake, label: "Charity impact guaranteed" },
+  { icon: RotateCcw, label: "Cancel anytime" },
 ]
 
 export function TrustBar() {
@@ -18,7 +20,7 @@ export function TrustBar() {
                 i < items.length - 1 ? "md:border-r md:border-border/30" : "",
               ].join(" ")}
             >
-              <span aria-hidden className="text-base">{item.icon}</span>
+              <item.icon aria-hidden className="h-4 w-4 text-primary/90" />
               {item.label}
             </li>
           ))}

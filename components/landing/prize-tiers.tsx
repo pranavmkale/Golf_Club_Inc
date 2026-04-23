@@ -58,7 +58,7 @@ function TierCard({ label, matchLabel, poolShare, description, isHero, note }: T
 
 export function PrizeTiers() {
   return (
-    <section className="py-24 bg-muted/10">
+    <section className="py-24 bg-muted/10 lg:px-24">
       <div className="container mx-auto px-6">
         {/* Heading */}
         <div className="mb-16 text-center">

@@ -18,7 +18,7 @@ export async function CharitySpotlight() {
   if (!charity) return null
 
   return (
-    <section className="py-24">
+    <section className="py-24 lg:px-24">
       <div className="container mx-auto px-6">
         {/* Section label */}
         <div className="mb-12 flex items-center gap-2 justify-center">
@@ -30,7 +30,7 @@ export async function CharitySpotlight() {
 
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           {/* Image */}
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl">
+          <div className="relative aspect-2/1 w-full overflow-hidden rounded-3xl">
             {charity.cover_image_url ? (
               <Image
                 src={charity.cover_image_url as string}
@@ -58,13 +58,6 @@ export async function CharitySpotlight() {
 
             <p className="line-clamp-3 text-base leading-relaxed text-muted-foreground">
               {charity.description}
-              {" "}
-              <Link
-                href={`/charities/${charity.id}`}
-                className="font-semibold text-primary underline-offset-4 hover:underline"
-              >
-                Read more
-              </Link>
             </p>
 
             <div className="rounded-2xl border border-border/40 bg-muted/30 p-5">
@@ -77,7 +70,7 @@ export async function CharitySpotlight() {
 
             <div>
               <Button asChild variant="outline" className="h-11 px-7 text-sm font-bold uppercase tracking-wider">
-                <Link href="/charities">See all our charities</Link>
+                <Link href="/charity">See all our charities</Link>
               </Button>
             </div>
           </div>

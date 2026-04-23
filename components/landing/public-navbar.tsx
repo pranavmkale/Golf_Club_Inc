@@ -102,9 +102,9 @@ export function PublicNavbar() {
           <a href="#how-it-works" className="text-muted-foreground transition-colors hover:text-foreground">
             How it works
           </a>
-          <a href="#charities" className="text-muted-foreground transition-colors hover:text-foreground">
+          <Link href="/charity" className="text-muted-foreground transition-colors hover:text-foreground">
             Charities
-          </a>
+          </Link>
         </nav>
 
         {/* Right actions */}
