@@ -10,7 +10,9 @@ interface UpdateProfileData {
 export async function updateProfileAction(data: UpdateProfileData) {
   try {
     const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
     if (!user) {
       return { error: "Unauthorized" }

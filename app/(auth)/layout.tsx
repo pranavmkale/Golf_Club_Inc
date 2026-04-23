@@ -11,16 +11,14 @@ export default function AuthLayout({
       <div className="w-full max-w-md space-y-6">
         <Card className="border-border bg-card shadow-2xl transition-all hover:shadow-[0_0_20px_rgba(var(--color-primary),0.1)]">
           <CardHeader className="space-y-2 text-center">
-            <CardTitle className="text-3xl font-extrabold tracking-tight luma-gradient-text">
+            <CardTitle className="luma-gradient-text text-3xl font-extrabold tracking-tight">
               Golf & Charity
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               Support causes while you play
             </p>
           </CardHeader>
-          <CardContent className="pt-2">
-            {children}
-          </CardContent>
+          <CardContent className="pt-2">{children}</CardContent>
         </Card>
         <p className="text-center text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} Golf. All rights reserved.

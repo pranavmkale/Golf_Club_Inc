@@ -44,7 +44,7 @@ export default function ResetPasswordPage() {
 
       {isSuccess && (
         <Alert className="border-primary/50 bg-primary/10 text-primary">
-          <CheckCircle2 className="h-4 w-4 mr-2" />
+          <CheckCircle2 className="mr-2 h-4 w-4" />
           <AlertDescription>
             Password updated! Redirecting to login...
           </AlertDescription>

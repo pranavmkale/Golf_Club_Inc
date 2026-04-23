@@ -1,7 +1,11 @@
 "use client"
 
 import { useState, useTransition } from "react"
-import { createCheckoutAction, createPortalAction, cancelSubscriptionAction } from "@/app/actions/stripe"
+import {
+  createCheckoutAction,
+  createPortalAction,
+  cancelSubscriptionAction,
+} from "@/app/actions/stripe"
 import { PlanCard } from "@/components/subscription/plan-card"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, AlertTriangle, Loader2 } from "lucide-react"
@@ -72,13 +76,16 @@ export function SubscriptionClient({
           toast.error("Error", { description: result.error })
         } else {
           toast.success("Subscription cancelled", {
-            description: "Your subscription will remain active until the end of the current billing period.",
+            description:
+              "Your subscription will remain active until the end of the current billing period.",
           })
           setShowCancelDialog(false)
         }
       } catch (error) {
         console.error("Cancel failed", error)
-        toast.error("Error", { description: "Failed to cancel subscription. Please try again." })
+        toast.error("Error", {
+          description: "Failed to cancel subscription. Please try again.",
+        })
       }
     })
   }
@@ -89,11 +96,13 @@ export function SubscriptionClient({
     <div className="space-y-8">
       {isSubscribed && (
         <Card className="p-6 shadow-none">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <h3 className="text-lg font-semibold">
                 {subscriptionDetails?.cancelAtPeriodEnd ? (
-                  <span className="text-amber-600 dark:text-amber-500">Subscription Ending</span>
+                  <span className="text-amber-600 dark:text-amber-500">
+                    Subscription Ending
+                  </span>
                 ) : (
                   "Active Subscription"
                 )}
@@ -105,9 +114,11 @@ export function SubscriptionClient({
                 </span>{" "}
                 plan.
                 {subscriptionDetails?.cancelAtPeriodEnd && (
-                  <span className="block mt-1 text-amber-600 dark:text-amber-500 font-medium">
+                  <span className="mt-1 block font-medium text-amber-600 dark:text-amber-500">
                     Access ends on{" "}
-                    {new Date(subscriptionDetails.currentPeriodEnd).toLocaleDateString("en-GB", {
+                    {new Date(
+                      subscriptionDetails.currentPeriodEnd
+                    ).toLocaleDateString("en-GB", {
                       month: "long",
                       day: "numeric",
                       year: "numeric",
@@ -133,7 +144,10 @@ export function SubscriptionClient({
                 )}
               </Button>
 
-              <Dialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
+              <Dialog
+                open={showCancelDialog}
+                onOpenChange={setShowCancelDialog}
+              >
                 <DialogTrigger asChild>
                   <Button variant="destructive" size="sm">
                     Cancel Subscription
@@ -146,21 +160,30 @@ export function SubscriptionClient({
                       Cancel Subscription?
                     </DialogTitle>
                     <DialogDescription>
-                      Are you sure you want to cancel your subscription? You&apos;ll continue to have access until the end of your current billing period.
+                      Are you sure you want to cancel your subscription?
+                      You&apos;ll continue to have access until the end of your
+                      current billing period.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="py-4">
                     <div className="rounded-lg border bg-muted p-4">
-                      <p className="text-sm font-medium">What happens when you cancel:</p>
-                      <ul className="mt-2 text-sm text-muted-foreground list-disc list-inside space-y-1">
-                        <li>Access continues until the end of your billing period</li>
+                      <p className="text-sm font-medium">
+                        What happens when you cancel:
+                      </p>
+                      <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-muted-foreground">
+                        <li>
+                          Access continues until the end of your billing period
+                        </li>
                         <li>No partial refunds for unused time</li>
                         <li>You can resubscribe anytime</li>
                       </ul>
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button variant="outline" onClick={() => setShowCancelDialog(false)}>
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowCancelDialog(false)}
+                    >
                       Keep Subscription
                     </Button>
                     <Button
@@ -189,7 +212,9 @@ export function SubscriptionClient({
         <PlanCard
           plan="monthly"
           price={monthlyPrice.amount}
-          isCurrentPlan={profile.subscription_plan === "monthly" && isSubscribed}
+          isCurrentPlan={
+            profile.subscription_plan === "monthly" && isSubscribed
+          }
           onSelect={() => onSelectPlan(monthlyPrice.id)}
           disabled={isPending}
         />

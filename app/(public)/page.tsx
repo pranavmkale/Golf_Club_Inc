@@ -1,6 +1,5 @@
 import { Suspense } from "react"
 import { format, endOfMonth } from "date-fns"
-import type { Metadata } from "next"
 import { createClient } from "@/lib/supabase/server"
 
 import { HeroSection } from "@/components/landing/hero-section"
@@ -20,13 +19,11 @@ export const metadata = createMetadata(
 export default async function PublicPage() {
   const supabase = await createClient()
 
-  // Count active subscribers (head-only query — no rows transferred)
   const { count: activeSubscriberCount } = await supabase
     .from("profiles")
     .select("*", { count: "exact", head: true })
     .eq("subscription_status", "active")
 
-  // Compute next draw date server-side
   const nextDrawDate = format(endOfMonth(new Date()), "do MMMM yyyy")
 
   return (

@@ -42,7 +42,7 @@ export function PlanCard({
     <Card
       className={`flex flex-col transition-all duration-300 ${
         isCurrentPlan
-          ? "border-2 border-primary shadow-lg scale-102"
+          ? "scale-102 border-2 border-primary shadow-lg"
           : "border-border/50 hover:border-primary/50"
       }`}
     >
@@ -56,7 +56,9 @@ export function PlanCard({
           )}
         </div>
         <div className="mt-4 flex items-baseline">
-          <span className="text-4xl font-extrabold tracking-tight">{price}</span>
+          <span className="text-4xl font-extrabold tracking-tight">
+            {price}
+          </span>
           <span className="ml-1 text-sm font-medium text-muted-foreground">
             /{plan === "monthly" ? "mo" : "yr"}
           </span>

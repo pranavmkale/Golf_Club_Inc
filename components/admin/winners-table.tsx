@@ -29,7 +29,7 @@ export function WinnersTable({ initialWinners }: WinnersTableProps) {
 
   return (
     <>
-      <div className="rounded-xl border border-border/50 bg-card/20 overflow-hidden">
+      <div className="overflow-hidden rounded-xl border border-border/50 bg-card/20">
         <Table>
           <TableHeader className="bg-muted/40">
             <TableRow>
@@ -43,24 +43,31 @@ export function WinnersTable({ initialWinners }: WinnersTableProps) {
           </TableHeader>
           <TableBody>
             {initialWinners.map((winner) => (
-              <TableRow 
-                key={winner.id} 
-                className="hover:bg-card/40 transition-colors cursor-pointer group"
+              <TableRow
+                key={winner.id}
+                className="group cursor-pointer transition-colors hover:bg-card/40"
                 onClick={() => handleRowClick(winner)}
               >
                 <TableCell>
                   <div className="flex flex-col">
-                    <span className="text-sm font-bold">{winner.profiles?.full_name}</span>
-                    <span className="text-xs text-muted-foreground">{winner.profiles?.email}</span>
+                    <span className="text-sm font-bold">
+                      {winner.profiles?.full_name}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {winner.profiles?.email}
+                    </span>
                   </div>
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-col">
-                    <span className="text-xs font-bold uppercase tracking-tight">
+                    <span className="text-xs font-bold tracking-tight uppercase">
                       {format(new Date(winner.draws?.draw_month), "MMM yyyy")}
                     </span>
-                    <Badge variant="outline" className="w-fit text-[8px] uppercase px-1">
-                      {winner.tier.replace('_', ' ')}
+                    <Badge
+                      variant="outline"
+                      className="w-fit px-1 text-[8px] uppercase"
+                    >
+                      {winner.tier.replace("_", " ")}
                     </Badge>
                   </div>
                 </TableCell>
@@ -71,31 +78,43 @@ export function WinnersTable({ initialWinners }: WinnersTableProps) {
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-col gap-1">
-                    <Badge variant="secondary" className={cn(
-                      "w-fit text-[10px] uppercase",
-                      winner.verification_status === 'approved' ? 'bg-green-500/10 text-green-500' : 
-                      winner.verification_status === 'rejected' ? 'bg-rose-500/10 text-rose-500' : ''
-                    )}>
+                    <Badge
+                      variant="secondary"
+                      className={cn(
+                        "w-fit text-[10px] uppercase",
+                        winner.verification_status === "approved"
+                          ? "bg-green-500/10 text-green-500"
+                          : winner.verification_status === "rejected"
+                            ? "bg-rose-500/10 text-rose-500"
+                            : ""
+                      )}
+                    >
                       {winner.verification_status}
                     </Badge>
                     {winner.proof_url && (
                       <div className="flex items-center gap-1 text-[10px] text-muted-foreground italic">
-                        Proof Attached <CheckCircle2 className="h-2 w-2 text-primary" />
+                        Proof Attached{" "}
+                        <CheckCircle2 className="h-2 w-2 text-primary" />
                       </div>
                     )}
                   </div>
                 </TableCell>
                 <TableCell>
-                   <Badge variant="outline" className={cn(
-                     "text-[10px] uppercase",
-                     winner.payout_status === 'paid' ? 'bg-primary/20 text-primary border-primary/20' : ''
-                   )}>
-                     {winner.payout_status}
-                   </Badge>
+                  <Badge
+                    variant="outline"
+                    className={cn(
+                      "text-[10px] uppercase",
+                      winner.payout_status === "paid"
+                        ? "border-primary/20 bg-primary/20 text-primary"
+                        : ""
+                    )}
+                  >
+                    {winner.payout_status}
+                  </Badge>
                 </TableCell>
                 <TableCell>
                   <div className="flex justify-end pr-2">
-                    <ChevronRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ChevronRight className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
                   </div>
                 </TableCell>
               </TableRow>
@@ -104,7 +123,7 @@ export function WinnersTable({ initialWinners }: WinnersTableProps) {
         </Table>
       </div>
 
-      <WinnerVerificationSheet 
+      <WinnerVerificationSheet
         winner={selectedWinner}
         isOpen={isSheetOpen}
         onClose={() => setIsSheetOpen(false)}

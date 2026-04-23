@@ -17,8 +17,10 @@ export default async function AdminWinnersPage() {
     .order("created_at", { ascending: false })
 
   if (error) throw error
-  const winners = (winnersData || []) as (Winner & { profiles: { full_name: string | null, email: string | null }, draws: { draw_month: string } })[]
-
+  const winners = (winnersData || []) as (Winner & {
+    profiles: { full_name: string | null; email: string | null }
+    draws: { draw_month: string }
+  })[]
 
   return (
     <div className="space-y-8">
@@ -30,9 +32,11 @@ export default async function AdminWinnersPage() {
       <WinnersTable initialWinners={winners} />
 
       {winners.length === 0 && (
-        <div className="flex flex-col items-center justify-center py-12 text-center text-muted-foreground border-2 border-dashed border-border/50 rounded-xl bg-card/10">
-          <Trophy className="h-10 w-10 mb-2 opacity-10" />
-          <p className="text-sm italic">No prizes recorded yet. The winners circle is waiting.</p>
+        <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-border/50 bg-card/10 py-12 text-center text-muted-foreground">
+          <Trophy className="mb-2 h-10 w-10 opacity-10" />
+          <p className="text-sm italic">
+            No prizes recorded yet. The winners circle is waiting.
+          </p>
         </div>
       )}
     </div>

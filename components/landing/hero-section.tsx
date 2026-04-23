@@ -10,9 +10,12 @@ interface HeroSectionProps {
   nextDrawDate: string
 }
 
-export function HeroSection({ activeSubscriberCount, nextDrawDate }: HeroSectionProps) {
+export function HeroSection({
+  activeSubscriberCount,
+  nextDrawDate,
+}: HeroSectionProps) {
   return (
-    <section className="relative min-h-svh flex items-center overflow-hidden">
+    <section className="relative flex min-h-svh items-center overflow-hidden">
       {/* Subtle radial background — CSS vars only */}
       <div
         className="pointer-events-none absolute inset-0 -z-10"
@@ -26,35 +29,45 @@ export function HeroSection({ activeSubscriberCount, nextDrawDate }: HeroSection
         {/* ── LEFT: Text content ── */}
         <div className="flex flex-col gap-8 lg:max-w-none">
           {/* Eyebrow pill */}
-          <div className="hero-animate hero-delay-0 inline-flex w-fit items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground backdrop-blur-sm">
+          <div className="hero-animate hero-delay-0 inline-flex w-fit items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-1.5 text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase backdrop-blur-sm">
             Golf · Charity · Monthly Draws
           </div>
 
           {/* H1 — word-by-word stagger */}
-          <h1 className="text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-[4rem] xl:text-7xl">
+          <h1 className="text-5xl leading-[1.05] font-black tracking-tight sm:text-6xl lg:text-[4rem] xl:text-7xl">
             <span className="hero-animate hero-delay-0 inline-block">Play</span>{" "}
-            <span className="hero-animate hero-delay-1 inline-block">golf.</span>
+            <span className="hero-animate hero-delay-1 inline-block">
+              golf.
+            </span>
             <br />
-            <span className="hero-animate hero-delay-2 inline-block luma-gradient-text">Change</span>{" "}
-            <span className="hero-animate hero-delay-3 inline-block luma-gradient-text">lives.</span>
+            <span className="hero-animate hero-delay-2 luma-gradient-text inline-block">
+              Change
+            </span>{" "}
+            <span className="hero-animate hero-delay-3 luma-gradient-text inline-block">
+              lives.
+            </span>
           </h1>
 
           {/* Subheadline */}
           <p className="hero-animate hero-delay-4 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Enter your Stableford scores each month, compete for prize draws, and automatically
-            donate to a charity you believe in.
+            Enter your Stableford scores each month, compete for prize draws,
+            and automatically donate to a charity you believe in.
           </p>
 
           {/* CTAs */}
           <div className="hero-animate hero-delay-5 flex flex-wrap items-center gap-4">
-            <Button asChild size="lg" className="h-12 px-8 text-sm font-bold uppercase tracking-wider">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 px-8 text-sm font-bold tracking-wider uppercase"
+            >
               <Link href="/register">Start for free</Link>
             </Button>
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="h-12 px-8 text-sm font-bold uppercase tracking-wider"
+              className="h-12 px-8 text-sm font-bold tracking-wider uppercase"
             >
               <a href="#how-it-works">How it works</a>
             </Button>
@@ -63,53 +76,61 @@ export function HeroSection({ activeSubscriberCount, nextDrawDate }: HeroSection
           {/* Trust line */}
           <p className="hero-animate hero-delay-5 flex flex-wrap items-center gap-2 text-xs text-muted-foreground/70">
             <span>No hidden fees</span>
-            <span aria-hidden className="select-none opacity-40">·</span>
+            <span aria-hidden className="opacity-40 select-none">
+              ·
+            </span>
             <span>Cancel anytime</span>
-            <span aria-hidden className="select-none opacity-40">·</span>
+            <span aria-hidden className="opacity-40 select-none">
+              ·
+            </span>
             <span>Stripe secured</span>
           </p>
         </div>
 
         {/* ── RIGHT: Floating stat cards ── */}
         <div className="relative hidden lg:flex lg:items-center lg:justify-start">
-          <div className="relative h-90 w-80 lg:-translate-x-4 xl:-translate-x-2 xl:h-105 xl:w-95">
+          <div className="relative h-90 w-80 lg:-translate-x-4 xl:h-105 xl:w-95 xl:-translate-x-2">
             {/* Card 1 — Jackpot */}
-            <Card className="stat-card stat-card-delay-0 absolute left-0 top-0 w-52 border-border/50 bg-card/80 p-0 shadow-xl backdrop-blur-md xl:w-60">
+            <Card className="stat-card stat-card-delay-0 absolute top-0 left-0 w-52 border-border/50 bg-card/80 p-0 shadow-xl backdrop-blur-md xl:w-60">
               <CardContent className="p-5">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                <div className="mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-muted-foreground uppercase">
                   <Trophy className="h-3.5 w-3.5 text-primary" />
                   Current Jackpot
                 </div>
-                <div className="text-2xl font-black">
-                  Loading…
+                <div className="text-2xl font-black">Loading…</div>
+                <div className="mt-1 text-[10px] tracking-widest text-muted-foreground uppercase">
+                  Rolls over if unclaimed
                 </div>
-                <div className="mt-1 text-[10px] text-muted-foreground uppercase tracking-widest">Rolls over if unclaimed</div>
               </CardContent>
             </Card>
 
             {/* Card 2 — Charities */}
-            <Card className="stat-card stat-card-delay-1 absolute right-0 top-20 w-52 border-border/50 bg-card/80 p-0 shadow-xl backdrop-blur-md xl:top-24 xl:w-56">
+            <Card className="stat-card stat-card-delay-1 absolute top-20 right-0 w-52 border-border/50 bg-card/80 p-0 shadow-xl backdrop-blur-md xl:top-24 xl:w-56">
               <CardContent className="p-5">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                <div className="mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-muted-foreground uppercase">
                   <Heart className="h-3.5 w-3.5 text-primary" />
                   Subscribers
                 </div>
                 <div className="text-2xl font-black">
                   {activeSubscriberCount.toLocaleString()}+
                 </div>
-                <div className="mt-1 text-[10px] text-muted-foreground uppercase tracking-widest">Active supporters</div>
+                <div className="mt-1 text-[10px] tracking-widest text-muted-foreground uppercase">
+                  Active supporters
+                </div>
               </CardContent>
             </Card>
 
             {/* Card 3 — Next draw */}
             <Card className="stat-card stat-card-delay-2 absolute bottom-0 left-4 w-52 border-border/50 bg-card/80 p-0 shadow-xl backdrop-blur-md xl:left-8 xl:w-56">
               <CardContent className="p-5">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">
+                <div className="mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-muted-foreground uppercase">
                   <Calendar className="h-3.5 w-3.5 text-primary" />
                   Next Draw
                 </div>
                 <div className="text-lg font-black">{nextDrawDate}</div>
-                <div className="mt-1 text-[10px] text-muted-foreground uppercase tracking-widest">Monthly draw date</div>
+                <div className="mt-1 text-[10px] tracking-widest text-muted-foreground uppercase">
+                  Monthly draw date
+                </div>
               </CardContent>
             </Card>
           </div>

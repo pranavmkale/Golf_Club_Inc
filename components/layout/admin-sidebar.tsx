@@ -53,7 +53,13 @@ const navMain = [
   { title: "Reports", href: "/admin/reports", icon: TrendingUp },
 ]
 
-function NavUser({ profile, onSignOut }: { profile: any; onSignOut: () => void }) {
+function NavUser({
+  profile,
+  onSignOut,
+}: {
+  profile: any
+  onSignOut: () => void
+}) {
   const { isMobile } = useSidebar()
   const initials = profile?.full_name?.substring(0, 2)?.toUpperCase() || "AD"
 
@@ -67,21 +73,28 @@ function NavUser({ profile, onSignOut }: { profile: any; onSignOut: () => void }
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={profile?.avatar_url} alt={profile?.full_name} />
-                <AvatarFallback className="rounded-lg bg-destructive/10 text-destructive text-xs font-bold">
+                <AvatarImage
+                  src={profile?.avatar_url}
+                  alt={profile?.full_name}
+                />
+                <AvatarFallback className="rounded-lg bg-destructive/10 text-xs font-bold text-destructive">
                   {initials}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{profile?.full_name || "Admin"}</span>
-                <span className="truncate text-xs text-muted-foreground">{profile?.email}</span>
+                <span className="truncate font-medium">
+                  {profile?.full_name || "Admin"}
+                </span>
+                <span className="truncate text-xs text-muted-foreground">
+                  {profile?.email}
+                </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
 
           <DropdownMenuContent
-            className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+            className="w-[--radix-dropdown-menu-trigger-width] min-w-56"
             side={isMobile ? "bottom" : "right"}
             align="end"
             sideOffset={4}
@@ -89,16 +102,24 @@ function NavUser({ profile, onSignOut }: { profile: any; onSignOut: () => void }
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={profile?.avatar_url} alt={profile?.full_name} />
-                  <AvatarFallback className="rounded-lg bg-destructive/10 text-destructive text-xs font-bold">
+                  <AvatarImage
+                    src={profile?.avatar_url}
+                    alt={profile?.full_name}
+                  />
+                  <AvatarFallback className="rounded-lg bg-destructive/10 text-xs font-bold text-destructive">
                     {initials}
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{profile?.full_name}</span>
+                  <span className="truncate font-semibold">
+                    {profile?.full_name}
+                  </span>
                   <span className="truncate text-xs">{profile?.email}</span>
                 </div>
-                <Badge variant="destructive" className="text-[10px] px-1.5 uppercase">
+                <Badge
+                  variant="destructive"
+                  className="px-1.5 text-[10px] uppercase"
+                >
                   Admin
                 </Badge>
               </div>
@@ -156,10 +177,18 @@ export function AdminSidebar({ profile, ...props }: AdminSidebarProps) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/admin">
-                <Image src="/Logo.png" alt="Golf Draw" width={36} height={36} className="rounded-full" />
+                <Image
+                  src="/Logo.png"
+                  alt="Golf Draw"
+                  width={36}
+                  height={36}
+                  className="rounded-full"
+                />
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Golf Club</span>
-                  <span className="truncate text-xs text-primary font-medium">Admin Console</span>
+                  <span className="truncate text-xs font-medium text-primary">
+                    Admin Console
+                  </span>
                 </div>
               </Link>
             </SidebarMenuButton>

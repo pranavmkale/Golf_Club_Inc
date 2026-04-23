@@ -14,10 +14,10 @@ export function SelectCharityClient({ charities }: SelectCharityClientProps) {
 
   return (
     <>
-      <Button 
-        onClick={() => setOpen(true)} 
-        size="lg" 
-        className="font-bold px-8 shadow-lg shadow-primary/20"
+      <Button
+        onClick={() => setOpen(true)}
+        size="lg"
+        className="px-8 font-bold shadow-lg shadow-primary/20"
       >
         Browse charities
       </Button>

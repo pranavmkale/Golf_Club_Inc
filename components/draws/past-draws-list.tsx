@@ -28,10 +28,10 @@ export function PastDrawsList({ pastDraws }: PastDrawsListProps) {
       ) : (
         <div className="space-y-4">
           {pastDraws.map((draw) => (
-            <DrawResultCard 
-              key={draw.id} 
-              draw={draw} 
-              userEntry={draw.userEntry} 
+            <DrawResultCard
+              key={draw.id}
+              draw={draw}
+              userEntry={draw.userEntry}
             />
           ))}
         </div>

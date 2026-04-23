@@ -64,16 +64,20 @@ export function UsersTable({ users, scoreCounts }: UsersTableProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <div className="relative max-w-sm flex-1">
+          <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search by name or email..."
-            className="pl-9 bg-card/50"
+            className="bg-card/50 pl-9"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <Button variant="outline" onClick={handleExportCSV} disabled={exporting}>
+        <Button
+          variant="outline"
+          onClick={handleExportCSV}
+          disabled={exporting}
+        >
           {exporting ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -88,7 +92,7 @@ export function UsersTable({ users, scoreCounts }: UsersTableProps) {
         </Button>
       </div>
 
-      <div className="rounded-xl border border-border/50 bg-card/20 overflow-hidden">
+      <div className="overflow-hidden rounded-xl border border-border/50 bg-card/20">
         <Table>
           <TableHeader className="bg-muted/40">
             <TableRow>
@@ -104,13 +108,19 @@ export function UsersTable({ users, scoreCounts }: UsersTableProps) {
           <TableBody>
             {filteredUsers.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                <TableCell
+                  colSpan={7}
+                  className="py-8 text-center text-muted-foreground"
+                >
                   No users found matching &quot;{searchQuery}&quot;
                 </TableCell>
               </TableRow>
             ) : (
               filteredUsers.map((user) => (
-                <TableRow key={user.id} className="hover:bg-card/40 transition-colors">
+                <TableRow
+                  key={user.id}
+                  className="transition-colors hover:bg-card/40"
+                >
                   <TableCell>
                     <div className="flex items-center gap-3">
                       <Avatar className="h-8 w-8">
@@ -120,28 +130,43 @@ export function UsersTable({ users, scoreCounts }: UsersTableProps) {
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex flex-col">
-                        <span className="text-sm font-bold">{user.full_name}</span>
-                        <span className="text-xs text-muted-foreground">{user.email}</span>
+                        <span className="text-sm font-bold">
+                          {user.full_name}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {user.email}
+                        </span>
                       </div>
                     </div>
                   </TableCell>
                   <TableCell>
                     {user.is_admin ? (
-                      <Badge variant="destructive" className="text-[10px] uppercase">
+                      <Badge
+                        variant="destructive"
+                        className="text-[10px] uppercase"
+                      >
                         Admin
                       </Badge>
                     ) : (
-                      <Badge variant="secondary" className="text-[10px] uppercase">
+                      <Badge
+                        variant="secondary"
+                        className="text-[10px] uppercase"
+                      >
                         Member
                       </Badge>
                     )}
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-col gap-1">
-                      <Badge variant="outline" className="w-fit text-[10px] uppercase flex gap-1 items-center">
+                      <Badge
+                        variant="outline"
+                        className="flex w-fit items-center gap-1 text-[10px] uppercase"
+                      >
                         <div
                           className={`h-1 w-1 rounded-full ${
-                            user.subscription_status === "active" ? "bg-green-500" : "bg-rose-500"
+                            user.subscription_status === "active"
+                              ? "bg-green-500"
+                              : "bg-rose-500"
                           }`}
                         />
                         {user.subscription_status}
@@ -157,11 +182,14 @@ export function UsersTable({ users, scoreCounts }: UsersTableProps) {
                     )}
                   </TableCell>
                   <TableCell className="text-center">
-                    <Badge variant="secondary" className="font-mono text-[10px]">
+                    <Badge
+                      variant="secondary"
+                      className="font-mono text-[10px]"
+                    >
                       {scoreCounts[user.id] || 0}/5
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-xs text-muted-foreground font-mono">
+                  <TableCell className="font-mono text-xs text-muted-foreground">
                     {format(new Date(user.created_at), "dd MMM yyyy")}
                   </TableCell>
                   <TableCell>
@@ -176,7 +204,7 @@ export function UsersTable({ users, scoreCounts }: UsersTableProps) {
         </Table>
       </div>
 
-      <p className="text-[10px] text-muted-foreground text-center">
+      <p className="text-center text-[10px] text-muted-foreground">
         Showing {filteredUsers.length} of {users.length} users
       </p>
     </div>

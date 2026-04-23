@@ -65,16 +65,17 @@ export function CharityPercentageSlider({
         <DialogHeader>
           <DialogTitle>Adjust your contribution</DialogTitle>
           <DialogDescription>
-            Choose how much of your subscription goes to charity. Minimum is 10%.
+            Choose how much of your subscription goes to charity. Minimum is
+            10%.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex flex-col items-center justify-center py-8 space-y-8">
-          <div className="text-center space-y-1">
+        <div className="flex flex-col items-center justify-center space-y-8 py-8">
+          <div className="space-y-1 text-center">
             <span className="text-6xl font-black tracking-tighter tabular-nums">
               {value[0]}%
             </span>
-            <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
+            <p className="text-sm font-medium tracking-widest text-muted-foreground uppercase">
               Contribution rate
             </p>
           </div>
@@ -89,23 +90,31 @@ export function CharityPercentageSlider({
               disabled={isPending}
               className="py-4"
             />
-            <div className="flex justify-between mt-2 px-1">
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">10% min</span>
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">100% max</span>
+            <div className="mt-2 flex justify-between px-1">
+              <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                10% min
+              </span>
+              <span className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
+                100% max
+              </span>
             </div>
           </div>
 
-          <div className="rounded-xl bg-primary/5 border border-primary/10 p-4 w-full text-center space-y-1">
+          <div className="w-full space-y-1 rounded-xl border border-primary/10 bg-primary/5 p-4 text-center">
             <p className="text-xs text-muted-foreground">
               At {value[0]}%, you&apos;ll contribute approximately
             </p>
             <p className="text-2xl font-bold tracking-tight">
-              £{calculatedAmount} <span className="text-sm font-medium text-muted-foreground">per month</span>
+              £{calculatedAmount}{" "}
+              <span className="text-sm font-medium text-muted-foreground">
+                per month
+              </span>
             </p>
           </div>
-          
-          <p className="text-[11px] text-muted-foreground text-center px-4 italic leading-relaxed">
-            Moving the slider changes your charity %, effective from your next billing period.
+
+          <p className="px-4 text-center text-[11px] leading-relaxed text-muted-foreground italic">
+            Moving the slider changes your charity %, effective from your next
+            billing period.
           </p>
         </div>
 
@@ -117,7 +126,11 @@ export function CharityPercentageSlider({
           >
             Cancel
           </Button>
-          <Button onClick={handleSave} disabled={isPending} className="sm:min-w-[100px]">
+          <Button
+            onClick={handleSave}
+            disabled={isPending}
+            className="sm:min-w-[100px]"
+          >
             {isPending ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

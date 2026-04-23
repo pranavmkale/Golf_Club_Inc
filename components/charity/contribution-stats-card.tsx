@@ -14,9 +14,9 @@ export function ContributionStatsCard({
 }: ContributionStatsCardProps) {
   return (
     <div className="grid gap-4 md:grid-cols-3">
-      <Card className="bg-sidebar border-sidebar-border shadow-sm">
-        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-          <CardTitle className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+      <Card className="border-sidebar-border bg-sidebar shadow-sm">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-[10px] font-black tracking-widest text-muted-foreground uppercase">
             Total contributed
           </CardTitle>
           <div className="h-4 w-4 text-emerald-500">
@@ -24,34 +24,46 @@ export function ContributionStatsCard({
           </div>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-black tabular-nums">£{totalContributed.toFixed(2)}</div>
-          <p className="text-[10px] text-muted-foreground mt-1 font-medium">Your lifetime impact</p>
+          <div className="text-3xl font-black tabular-nums">
+            £{totalContributed.toFixed(2)}
+          </div>
+          <p className="mt-1 text-[10px] font-medium text-muted-foreground">
+            Your lifetime impact
+          </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-sidebar border-sidebar-border shadow-sm">
-        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-          <CardTitle className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+      <Card className="border-sidebar-border bg-sidebar shadow-sm">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-[10px] font-black tracking-widest text-muted-foreground uppercase">
             Active charity
           </CardTitle>
           <Home className="h-4 w-4 text-primary" />
         </CardHeader>
         <CardContent>
-          <div className="text-xl font-bold truncate leading-tight">{charityName}</div>
-          <p className="text-[10px] text-muted-foreground mt-1 font-medium italic">Receiving monthly support</p>
+          <div className="truncate text-xl leading-tight font-bold">
+            {charityName}
+          </div>
+          <p className="mt-1 text-[10px] font-medium text-muted-foreground italic">
+            Receiving monthly support
+          </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-sidebar border-sidebar-border shadow-sm">
-        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-          <CardTitle className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+      <Card className="border-sidebar-border bg-sidebar shadow-sm">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-[10px] font-black tracking-widest text-muted-foreground uppercase">
             Contribution rate
           </CardTitle>
           <Percent className="h-4 w-4 text-primary" />
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-black tabular-nums">{charityPercentage}%</div>
-          <p className="text-[10px] text-muted-foreground mt-1 font-medium">Of your sub price</p>
+          <div className="text-3xl font-black tabular-nums">
+            {charityPercentage}%
+          </div>
+          <p className="mt-1 text-[10px] font-medium text-muted-foreground">
+            Of your sub price
+          </p>
         </CardContent>
       </Card>
     </div>

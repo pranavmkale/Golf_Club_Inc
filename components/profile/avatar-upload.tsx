@@ -12,7 +12,12 @@ interface AvatarUploadProps {
   userId: string
 }
 
-export function AvatarUpload({ avatarUrl, fullName, initials, userId }: AvatarUploadProps) {
+export function AvatarUpload({
+  avatarUrl,
+  fullName,
+  initials,
+  userId,
+}: AvatarUploadProps) {
   const [preview, setPreview] = React.useState<string | null>(avatarUrl ?? null)
   const [isUploading, setIsUploading] = React.useState(false)
   const inputRef = React.useRef<HTMLInputElement>(null)
@@ -22,7 +27,11 @@ export function AvatarUpload({ avatarUrl, fullName, initials, userId }: AvatarUp
     if (!file) return
 
     // Validate
-    if (!["image/jpeg", "image/png", "image/gif", "image/webp"].includes(file.type)) {
+    if (
+      !["image/jpeg", "image/png", "image/gif", "image/webp"].includes(
+        file.type
+      )
+    ) {
       alert("Please upload a JPG, PNG, GIF or WebP image.")
       return
     }
@@ -49,7 +58,9 @@ export function AvatarUpload({ avatarUrl, fullName, initials, userId }: AvatarUp
       if (uploadError) throw uploadError
 
       // Get public URL
-      const { data: { publicUrl } } = supabase.storage.from("avatars").getPublicUrl(path)
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("avatars").getPublicUrl(path)
 
       // Update profile
       await supabase
@@ -68,18 +79,21 @@ export function AvatarUpload({ avatarUrl, fullName, initials, userId }: AvatarUp
   }
 
   return (
-    <div className="relative group w-24 h-24 cursor-pointer" onClick={() => inputRef.current?.click()}>
+    <div
+      className="group relative h-24 w-24 cursor-pointer"
+      onClick={() => inputRef.current?.click()}
+    >
       <Avatar className="h-24 w-24">
         <AvatarImage src={preview ?? undefined} alt={fullName} />
-        <AvatarFallback className="text-2xl font-bold bg-primary/10 text-primary">
+        <AvatarFallback className="bg-primary/10 text-2xl font-bold text-primary">
           {initials}
         </AvatarFallback>
       </Avatar>
 
       {/* Hover overlay */}
-      <div className="absolute inset-0 rounded-full flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+      <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/50 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
         {isUploading ? (
-          <Loader2 className="h-7 w-7 text-white animate-spin" />
+          <Loader2 className="h-7 w-7 animate-spin text-white" />
         ) : (
           <Camera className="h-7 w-7 text-white" />
         )}

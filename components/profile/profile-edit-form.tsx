@@ -61,7 +61,7 @@ export function ProfileEditForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="first-name">First Name</Label>
           <Input
@@ -94,7 +94,7 @@ export function ProfileEditForm({
             value={email}
             placeholder="Email address"
             disabled
-            className="opacity-60 cursor-not-allowed"
+            className="cursor-not-allowed opacity-60"
           />
           <p className="text-xs text-muted-foreground">
             Email cannot be changed here.
@@ -110,7 +110,7 @@ export function ProfileEditForm({
                 : "No active subscription"
             }
             disabled
-            className="opacity-60 cursor-not-allowed"
+            className="cursor-not-allowed opacity-60"
           />
         </div>
       </div>

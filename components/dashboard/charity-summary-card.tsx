@@ -25,7 +25,7 @@ export function CharitySummaryCard({
   const monthlyImpact = isSubscribed ? calculateContribution(5, percentage) : 0
 
   return (
-    <Card className="border-border/50 bg-card/50 backdrop-blur-sm h-full flex flex-col">
+    <Card className="flex h-full flex-col border-border/50 bg-card/50 backdrop-blur-sm">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <div className="space-y-1">
           <CardTitle className="text-xl font-bold">Charity Impact</CardTitle>
@@ -33,7 +33,7 @@ export function CharitySummaryCard({
         </div>
         <Heart className="h-5 w-5 text-primary" />
       </CardHeader>
-      <CardContent className="pt-4 flex-1">
+      <CardContent className="flex-1 pt-4">
         {charity ? (
           <div className="space-y-4">
             <div className="flex items-center gap-4">
@@ -45,16 +45,19 @@ export function CharitySummaryCard({
               </Avatar>
               <div className="space-y-0.5">
                 <p className="font-bold">{charity.name}</p>
-                <p className="text-xs text-muted-foreground line-clamp-1">
+                <p className="line-clamp-1 text-xs text-muted-foreground">
                   {charity.description}
                 </p>
               </div>
             </div>
             <div className="pt-2">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Monthly Contribution</span>
+                <span className="text-muted-foreground">
+                  Monthly Contribution
+                </span>
                 <span className="font-bold text-primary">
-                  {percentage}% ({isSubscribed ? `£${monthlyImpact.toFixed(2)}` : "Inactive"})
+                  {percentage}% (
+                  {isSubscribed ? `£${monthlyImpact.toFixed(2)}` : "Inactive"})
                 </span>
               </div>
               <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-muted/30">
@@ -67,13 +70,13 @@ export function CharitySummaryCard({
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center space-y-2 py-4">
-            <p className="text-sm text-muted-foreground italic text-center">
+            <p className="text-center text-sm text-muted-foreground italic">
               No charity selected. Join a cause to start contributing!
             </p>
           </div>
         )}
       </CardContent>
-      <CardFooter className="pt-4 border-t border-border/10">
+      <CardFooter className="border-t border-border/10 pt-4">
         <Link
           href="/settings/charity"
           className="flex w-full items-center justify-center gap-2 text-sm font-medium text-primary hover:underline"

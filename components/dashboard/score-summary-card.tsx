@@ -17,7 +17,9 @@ export function ScoreSummaryCard({ scores }: ScoreSummaryCardProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Trophy className="h-5 w-5 text-primary" />
-          <h2 className="text-2xl font-bold tracking-tight">Performance History</h2>
+          <h2 className="text-2xl font-bold tracking-tight">
+            Performance History
+          </h2>
         </div>
         <ScoreEntryDialog
           trigger={
@@ -33,7 +35,7 @@ export function ScoreSummaryCard({ scores }: ScoreSummaryCardProps) {
         <div className="lg:col-span-1">
           <ScoreCard scores={scores} />
         </div>
-        
+
         <div className="lg:col-span-3">
           <ScoreList scores={scores} />
         </div>

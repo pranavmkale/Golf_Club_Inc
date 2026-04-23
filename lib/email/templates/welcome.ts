@@ -5,7 +5,7 @@ import { getSiteUrl } from "@/lib/site-url"
  */
 export function welcomeEmail(name: string) {
   const dashboardUrl = `${getSiteUrl()}/dashboard`
-  
+
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1a1a1a;">
       <h1 style="color: #000; font-weight: 800; text-transform: uppercase; letter-spacing: -0.05em;">Welcome to Golf Draw 🎉</h1>

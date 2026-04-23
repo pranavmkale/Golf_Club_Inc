@@ -8,9 +8,11 @@ export function CharityPageHeader({ charityName }: CharityPageHeaderProps) {
   return (
     <PageHeader
       title="My Charity"
-      description={charityName 
-        ? `Supporting ${charityName} this month.` 
-        : "No charity selected yet."}
+      description={
+        charityName
+          ? `Supporting ${charityName} this month.`
+          : "No charity selected yet."
+      }
     />
   )
 }

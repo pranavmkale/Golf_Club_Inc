@@ -6,8 +6,15 @@ import { getSiteUrl } from "@/lib/site-url"
 /**
  * Stub for sending winner emails.
  */
-async function sendWinnerEmail(email: string, fullName: string, tier: string, amount: number) {
-  console.log(`[EMAIL STUB] Sending to ${email}: Congratulations ${fullName}! You won ${amount} in the ${tier} tier.`)
+async function sendWinnerEmail(
+  email: string,
+  fullName: string,
+  tier: string,
+  amount: number
+) {
+  console.log(
+    `[EMAIL STUB] Sending to ${email}: Congratulations ${fullName}! You won ${amount} in the ${tier} tier.`
+  )
   // Integration with Resend or SendGrid would go here
 }
 
@@ -22,16 +29,25 @@ export async function POST(
   try {
     const { id } = await params
     const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    if (!user)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 
-    const { data: profile } = await supabase.from("profiles").select("is_admin").eq("id", user.id).single()
-    if (!profile?.is_admin) return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", user.id)
+      .single()
+    if (!profile?.is_admin)
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
 
     // 1. Update draw status
-    const { data: draw, error: drawError } = await (supabaseAdmin
-      .from("draws") as any)
+    const { data: draw, error: drawError } = await (
+      supabaseAdmin.from("draws") as any
+    )
       .update({
         status: "published",
         published_at: new Date().toISOString(),
@@ -50,12 +66,15 @@ export async function POST(
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Cookie": req.headers.get("cookie") || "",
+          Cookie: req.headers.get("cookie") || "",
         },
         body: JSON.stringify({ drawId: id }),
       })
     } catch (notificationError) {
-      console.error("Failed to trigger automated notifications:", notificationError)
+      console.error(
+        "Failed to trigger automated notifications:",
+        notificationError
+      )
       // We don't throw here to avoid failing the publish itself, but it should be logged
     }
 

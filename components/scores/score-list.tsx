@@ -58,12 +58,18 @@ export function ScoreList({ scores }: ScoreListProps) {
       {scores.length < 5 ? (
         <div className="rounded-lg border border-border/50 bg-muted/30 p-4 text-center">
           <p className="text-sm text-muted-foreground">
-            Add <span className="font-bold text-foreground">{5 - scores.length}</span> more score(s) to be eligible for the next draw.
+            Add{" "}
+            <span className="font-bold text-foreground">
+              {5 - scores.length}
+            </span>{" "}
+            more score(s) to be eligible for the next draw.
           </p>
         </div>
       ) : (
         <div className="rounded-lg border border-primary/20 bg-primary/10 p-4 text-center">
-          <Badge variant="default" className="mb-1">ELIGIBLE</Badge>
+          <Badge variant="default" className="mb-1">
+            ELIGIBLE
+          </Badge>
           <p className="text-sm font-semibold text-primary">
             Draw entry ready! You have 5 scores submitted.
           </p>
@@ -71,12 +77,14 @@ export function ScoreList({ scores }: ScoreListProps) {
       )}
 
       {scores.length === 0 ? (
-        <div className="flex flex-col items-center justify-center space-y-2 py-12 text-center border-2 border-dashed border-border/50 rounded-xl">
+        <div className="flex flex-col items-center justify-center space-y-2 rounded-xl border-2 border-dashed border-border/50 py-12 text-center">
           <p className="text-muted-foreground">No scores recorded yet.</p>
-          <p className="text-sm text-muted-foreground/60">Submit your first score to start tracking your performance.</p>
+          <p className="text-sm text-muted-foreground/60">
+            Submit your first score to start tracking your performance.
+          </p>
         </div>
       ) : (
-        <div className="rounded-xl border border-border/50 bg-card overflow-hidden">
+        <div className="overflow-hidden rounded-xl border border-border/50 bg-card">
           <Table>
             <TableHeader>
               <TableRow>
@@ -107,7 +115,7 @@ export function ScoreList({ scores }: ScoreListProps) {
                       <DropdownMenuContent align="end">
                         {/* Edit and Delete actions would go here or in a separate modal */}
                         {/* Simplifying forbrevity as requested to use AlertDialog for delete */}
-                        <DropdownMenuItem 
+                        <DropdownMenuItem
                           className="text-destructive focus:text-destructive"
                           onClick={() => handleDelete(score.id)}
                           disabled={isDeleting === score.id}

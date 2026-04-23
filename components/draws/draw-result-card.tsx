@@ -11,25 +11,29 @@ interface DrawResultCardProps {
 export function DrawResultCard({ draw, userEntry }: DrawResultCardProps) {
   const winningNumbers = draw.winning_numbers || []
   const userEntryNumbers = userEntry?.entry_numbers || []
-  
-  const isWinner = userEntry && userEntry.tier !== 'none' && userEntry.tier !== null
+
+  const isWinner =
+    userEntry && userEntry.tier !== "none" && userEntry.tier !== null
   const matchCount = userEntry?.matched_count || 0
 
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 rounded-xl border border-sidebar-border bg-sidebar p-5 shadow-sm transition-hover hover:border-primary/20">
+    <div className="transition-hover flex flex-col items-start justify-between gap-6 rounded-xl border border-sidebar-border bg-sidebar p-5 shadow-sm hover:border-primary/20 sm:flex-row sm:items-center">
       {/* Left: Month + year */}
-      <div className="space-y-1 min-w-[140px]">
-        <p className="font-bold text-lg leading-tight uppercase tracking-tight">
+      <div className="min-w-[140px] space-y-1">
+        <p className="text-lg leading-tight font-bold tracking-tight uppercase">
           {format(new Date(draw.draw_month), "MMMM yyyy")}
         </p>
-        <p className="text-[11px] text-muted-foreground uppercase tracking-widest font-semibold">
-          Published {draw.published_at ? format(new Date(draw.published_at), "MMM d, yyyy") : "N/A"}
+        <p className="text-[11px] font-semibold tracking-widest text-muted-foreground uppercase">
+          Published{" "}
+          {draw.published_at
+            ? format(new Date(draw.published_at), "MMM d, yyyy")
+            : "N/A"}
         </p>
       </div>
 
       {/* Center: Winning numbers */}
-      <div className="flex flex-col gap-2 flex-1 w-full sm:w-auto">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/70">
+      <div className="flex w-full flex-1 flex-col gap-2 sm:w-auto">
+        <p className="text-[10px] font-bold tracking-widest text-muted-foreground/70 uppercase">
           Winning numbers
         </p>
         <div className="flex flex-wrap gap-1.5">
@@ -43,9 +47,9 @@ export function DrawResultCard({ draw, userEntry }: DrawResultCardProps) {
                 <div
                   key={i}
                   className={cn(
-                    "flex items-center justify-center h-10 w-10 rounded-lg border text-sm font-bold shadow-sm transition-all tabular-nums",
+                    "flex h-10 w-10 items-center justify-center rounded-lg border text-sm font-bold tabular-nums shadow-sm transition-all",
                     isMatch
-                      ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 scale-105"
+                      ? "scale-105 border-emerald-500/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                       : "border-sidebar-border bg-sidebar-accent/30 text-muted-foreground"
                   )}
                 >
@@ -54,15 +58,20 @@ export function DrawResultCard({ draw, userEntry }: DrawResultCardProps) {
               )
             })
           ) : (
-            <p className="text-xs italic text-muted-foreground">Results pending</p>
+            <p className="text-xs text-muted-foreground italic">
+              Results pending
+            </p>
           )}
         </div>
       </div>
 
       {/* Right: Result badge */}
-      <div className="flex flex-col items-start sm:items-end gap-1 shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
+      <div className="mt-2 flex w-full shrink-0 flex-col items-start gap-1 sm:mt-0 sm:w-auto sm:items-end">
         {!userEntry ? (
-          <Badge variant="outline" className="text-muted-foreground border-sidebar-border bg-sidebar-accent/10 py-1 font-semibold uppercase tracking-wider text-[10px]">
+          <Badge
+            variant="outline"
+            className="border-sidebar-border bg-sidebar-accent/10 py-1 text-[10px] font-semibold tracking-wider text-muted-foreground uppercase"
+          >
             Not entered
           </Badge>
         ) : (
@@ -70,17 +79,21 @@ export function DrawResultCard({ draw, userEntry }: DrawResultCardProps) {
             <Badge
               variant={isWinner ? "default" : "secondary"}
               className={cn(
-                "py-1 font-bold uppercase tracking-wider text-[10px]",
-                userEntry.tier === 'jackpot' && "bg-amber-500 hover:bg-amber-600 text-white border-amber-400/50",
-                userEntry.tier === 'tier_4' && "bg-emerald-500 hover:bg-emerald-600 text-white",
-                userEntry.tier === 'tier_3' && "bg-blue-500 hover:bg-blue-600 text-white",
-                userEntry.tier === 'none' && "bg-sidebar-accent text-muted-foreground"
+                "py-1 text-[10px] font-bold tracking-wider uppercase",
+                userEntry.tier === "jackpot" &&
+                  "border-amber-400/50 bg-amber-500 text-white hover:bg-amber-600",
+                userEntry.tier === "tier_4" &&
+                  "bg-emerald-500 text-white hover:bg-emerald-600",
+                userEntry.tier === "tier_3" &&
+                  "bg-blue-500 text-white hover:bg-blue-600",
+                userEntry.tier === "none" &&
+                  "bg-sidebar-accent text-muted-foreground"
               )}
             >
-              {userEntry.tier === 'jackpot' && "JACKPOT"}
-              {userEntry.tier === 'tier_4' && "4-Match Win"}
-              {userEntry.tier === 'tier_3' && "3-Match Win"}
-              {userEntry.tier === 'none' && "No match"}
+              {userEntry.tier === "jackpot" && "JACKPOT"}
+              {userEntry.tier === "tier_4" && "4-Match Win"}
+              {userEntry.tier === "tier_3" && "3-Match Win"}
+              {userEntry.tier === "none" && "No match"}
             </Badge>
             <p className="text-[10px] font-medium text-muted-foreground tabular-nums">
               Matched {matchCount} number{matchCount !== 1 ? "s" : ""}

@@ -72,7 +72,10 @@ export function generateAlgorithmicDraw(
 /**
  * Calculates the count of matching numbers between user entries and winning numbers.
  */
-export function matchScores(userNumbers: number[], winningNumbers: number[]): number {
+export function matchScores(
+  userNumbers: number[],
+  winningNumbers: number[]
+): number {
   // Convert to numbers to handle potential string values from JSONB
   const winningSet = new Set(winningNumbers.map((n) => Number(n)))
   let matches = 0
@@ -99,7 +102,9 @@ export function determineTier(
 /**
  * Calculates the allocated prize pools based on total subscription revenue.
  */
-export function calculatePrizePools(totalSubscriptionRevenue: number): PrizePools {
+export function calculatePrizePools(
+  totalSubscriptionRevenue: number
+): PrizePools {
   return {
     jackpot: totalSubscriptionRevenue * 0.4,
     tier4: totalSubscriptionRevenue * 0.35,

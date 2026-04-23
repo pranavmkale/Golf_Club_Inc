@@ -28,15 +28,24 @@ interface Draw {
 export async function POST(req: Request) {
   try {
     const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+    if (!user)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 
     // 1. Verify admin role
-    const { data: profile } = await supabase.from("profiles").select("is_admin").eq("id", user.id).single()
-    if (!profile?.is_admin) return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", user.id)
+      .single()
+    if (!profile?.is_admin)
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
 
     const { drawId } = await req.json()
-    if (!drawId) return NextResponse.json({ error: "Missing drawId" }, { status: 400 })
+    if (!drawId)
+      return NextResponse.json({ error: "Missing drawId" }, { status: 400 })
 
     // 2. Fetch Draw details
     const { data: drawData, error: drawError } = await supabaseAdmin
@@ -51,14 +60,16 @@ export async function POST(req: Request) {
     // 3. Fetch all participants for this draw
     const { data: participants, error: participantsError } = await supabaseAdmin
       .from("draw_entries")
-      .select(`
+      .select(
+        `
         user_id,
         entry_numbers,
         profiles (
           email,
           full_name
         )
-      `)
+      `
+      )
       .eq("draw_id", drawId)
 
     if (participantsError) throw participantsError
@@ -93,18 +104,18 @@ export async function POST(req: Request) {
         drawDate: drawDateString,
       })
 
-      const subject = winner 
-        ? "You won! Your draw result is in 🏆" 
+      const subject = winner
+        ? "You won! Your draw result is in 🏆"
         : `Draw results for ${drawDateString} are in`
 
       const res = await sendEmail(recipientEmail, subject, template)
       results.push({ email: recipientEmail, success: res.success })
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       totalNotified: results.length,
-      errors: results.filter(r => !r.success).length 
+      errors: results.filter((r) => !r.success).length,
     })
   } catch (error: any) {
     console.error("Winner Notification API Error:", error)

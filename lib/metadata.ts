@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import { getSiteUrl } from "@/lib/site-url"
 
 const APP_NAME = "Golf Club Inc."
-const APP_DESCRIPTION = "Support causes while you play. Join our golf community and make a difference with every game."
+const APP_DESCRIPTION =
+  "Support causes while you play. Join our golf community and make a difference with every game."
 const APP_URL = getSiteUrl()
 
 export const defaultMetadata: Metadata = {
@@ -11,7 +12,15 @@ export const defaultMetadata: Metadata = {
     template: `%s | ${APP_NAME}`,
   },
   description: APP_DESCRIPTION,
-  keywords: ["golf", "charity", "sports", "fundraising", "community", "draw", "winners"],
+  keywords: [
+    "golf",
+    "charity",
+    "sports",
+    "fundraising",
+    "community",
+    "draw",
+    "winners",
+  ],
   authors: [{ name: "Golf Club Inc." }],
   creator: "Golf Club Inc.",
   metadataBase: new URL(APP_URL),

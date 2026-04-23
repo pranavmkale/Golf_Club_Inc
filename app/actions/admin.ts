@@ -9,7 +9,9 @@ import { revalidatePath } from "next/cache"
  */
 async function verifyAdmin() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   if (!user) throw new Error("Unauthorized")
 
   const { data: profile } = await supabase
@@ -28,8 +30,7 @@ async function verifyAdmin() {
 export async function updateUserAdminAction(userId: string, data: any) {
   await verifyAdmin()
 
-  const { error } = await (supabaseAdmin
-    .from("profiles") as any)
+  const { error } = await (supabaseAdmin.from("profiles") as any)
     .update(data)
     .eq("id", userId)
 
@@ -44,8 +45,7 @@ export async function updateUserAdminAction(userId: string, data: any) {
 export async function approveWinnerAction(winnerId: string) {
   await verifyAdmin()
 
-  const { error } = await (supabaseAdmin
-    .from("winners") as any)
+  const { error } = await (supabaseAdmin.from("winners") as any)
     .update({ verification_status: "approved" })
     .eq("id", winnerId)
 
@@ -60,11 +60,10 @@ export async function approveWinnerAction(winnerId: string) {
 export async function rejectWinnerAction(winnerId: string, reason: string) {
   await verifyAdmin()
 
-  const { error } = await (supabaseAdmin
-    .from("winners") as any)
-    .update({ 
+  const { error } = await (supabaseAdmin.from("winners") as any)
+    .update({
       verification_status: "rejected",
-      rejection_reason: reason 
+      rejection_reason: reason,
     })
     .eq("id", winnerId)
 
@@ -79,8 +78,7 @@ export async function rejectWinnerAction(winnerId: string, reason: string) {
 export async function markAsPaidAction(winnerId: string) {
   await verifyAdmin()
 
-  const { error } = await (supabaseAdmin
-    .from("winners") as any)
+  const { error } = await (supabaseAdmin.from("winners") as any)
     .update({ payout_status: "paid", paid_at: new Date().toISOString() })
     .eq("id", winnerId)
 
@@ -92,11 +90,13 @@ export async function markAsPaidAction(winnerId: string) {
 /**
  * Toggles charity visibility and featured status.
  */
-export async function toggleCharityAdminAction(charityId: string, data: { is_active?: boolean; is_featured?: boolean }) {
+export async function toggleCharityAdminAction(
+  charityId: string,
+  data: { is_active?: boolean; is_featured?: boolean }
+) {
   await verifyAdmin()
 
-  const { error } = await (supabaseAdmin
-    .from("charities") as any)
+  const { error } = await (supabaseAdmin.from("charities") as any)
     .update(data)
     .eq("id", charityId)
 

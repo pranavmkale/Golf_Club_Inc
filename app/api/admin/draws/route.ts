@@ -66,13 +66,19 @@ export async function POST(req: Request) {
       .single()
 
     if (!profile?.is_admin) {
-      return NextResponse.json({ error: "Forbidden: Admin access required" }, { status: 403 })
+      return NextResponse.json(
+        { error: "Forbidden: Admin access required" },
+        { status: 403 }
+      )
     }
 
     const { drawMonth, drawType, simulate = false } = await req.json()
 
     if (!drawMonth || !drawType) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      )
     }
 
     // 1. Fetch all active subscribers
@@ -118,7 +124,10 @@ export async function POST(req: Request) {
     let winningNumbers: number[]
     if (drawType === "algorithmic") {
       const { data: allScores } = await supabaseAdmin.from("scores").select("*")
-      winningNumbers = generateAlgorithmicDraw((allScores || []) as Score[], "most")
+      winningNumbers = generateAlgorithmicDraw(
+        (allScores || []) as Score[],
+        "most"
+      )
     } else {
       winningNumbers = generateRandomDraw()
     }
@@ -178,8 +187,9 @@ export async function POST(req: Request) {
     }
 
     // 7. Save to DB
-    const { data: drawData, error: drawError } = await (supabaseAdmin
-      .from("draws") as any)
+    const { data: drawData, error: drawError } = await (
+      supabaseAdmin.from("draws") as any
+    )
       .insert({
         draw_month: drawMonth,
         draw_type: drawType,
@@ -216,9 +226,30 @@ export async function POST(req: Request) {
       tier: string
       prize_amount: number
     }> = []
-    winnersMap.jackpot.forEach((w) => winnersToInsert.push({ draw_id: draw.id, user_id: w.userId, tier: "jackpot", prize_amount: prizes.jackpot }))
-    winnersMap.tier_4.forEach((w) => winnersToInsert.push({ draw_id: draw.id, user_id: w.userId, tier: "tier_4", prize_amount: prizes.tier_4 }))
-    winnersMap.tier_3.forEach((w) => winnersToInsert.push({ draw_id: draw.id, user_id: w.userId, tier: "tier_3", prize_amount: prizes.tier_3 }))
+    winnersMap.jackpot.forEach((w) =>
+      winnersToInsert.push({
+        draw_id: draw.id,
+        user_id: w.userId,
+        tier: "jackpot",
+        prize_amount: prizes.jackpot,
+      })
+    )
+    winnersMap.tier_4.forEach((w) =>
+      winnersToInsert.push({
+        draw_id: draw.id,
+        user_id: w.userId,
+        tier: "tier_4",
+        prize_amount: prizes.tier_4,
+      })
+    )
+    winnersMap.tier_3.forEach((w) =>
+      winnersToInsert.push({
+        draw_id: draw.id,
+        user_id: w.userId,
+        tier: "tier_3",
+        prize_amount: prizes.tier_3,
+      })
+    )
 
     if (winnersToInsert.length > 0) {
       await (supabaseAdmin.from("winners") as any).insert(winnersToInsert)

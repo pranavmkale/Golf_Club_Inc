@@ -13,13 +13,21 @@ export async function GET(
   try {
     const { id } = await params
     const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
-    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    if (!user)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
 
     // Admin check
-    const { data: profile } = await supabase.from("profiles").select("is_admin").eq("id", user.id).single()
-    if (!profile?.is_admin) return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("is_admin")
+      .eq("id", user.id)
+      .single()
+    if (!profile?.is_admin)
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
 
     // 1. Fetch Draw
     const { data: draw, error: drawError } = await supabaseAdmin
@@ -33,7 +41,8 @@ export async function GET(
     // 2. Fetch Entries with Profile details
     const { data: entries, error: entriesError } = await supabaseAdmin
       .from("draw_entries")
-      .select(`
+      .select(
+        `
         id,
         entry_numbers,
         matched_count,
@@ -43,7 +52,8 @@ export async function GET(
           full_name,
           email
         )
-      `)
+      `
+      )
       .eq("draw_id", id)
       .order("matched_count", { ascending: false })
 
@@ -52,7 +62,8 @@ export async function GET(
     // 3. Fetch Winners with Profile details
     const { data: winners, error: winnersError } = await supabaseAdmin
       .from("winners")
-      .select(`
+      .select(
+        `
         id,
         prize_amount,
         tier,
@@ -61,7 +72,8 @@ export async function GET(
           full_name,
           email
         )
-      `)
+      `
+      )
       .eq("draw_id", id)
 
     if (winnersError) throw winnersError
@@ -69,7 +81,7 @@ export async function GET(
     return NextResponse.json({
       draw,
       entries,
-      winners
+      winners,
     })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })

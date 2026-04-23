@@ -21,7 +21,6 @@ export const metadata = createMetadata(
  * Uses parallel data fetching to optimize performance.
  */
 export default async function DashboardPage() {
-
   const supabase = await createClient()
   const {
     data: { user },
@@ -84,7 +83,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-10 pb-12">
-      <PageHeader 
+      <PageHeader
         title={`Welcome back, ${profile?.full_name?.split(" ")[0]}`}
         description="Track your progress, manage your impact, and check your draw eligibility."
       />
@@ -120,7 +119,9 @@ export default async function DashboardPage() {
         {/* Draws & Results Grid */}
         <div className="grid gap-8 lg:grid-cols-2">
           <section className="space-y-4">
-            <h2 className="text-xl font-bold tracking-tight px-1">Upcoming Draw</h2>
+            <h2 className="px-1 text-xl font-bold tracking-tight">
+              Upcoming Draw
+            </h2>
             <SectionBoundary label="Draw Status">
               <DrawStatusCard
                 eligible={eligible}
@@ -131,7 +132,9 @@ export default async function DashboardPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-bold tracking-tight px-1">Winning History</h2>
+            <h2 className="px-1 text-xl font-bold tracking-tight">
+              Winning History
+            </h2>
             <SectionBoundary label="Winnings">
               <WinningsOverviewCard winners={winners} />
             </SectionBoundary>

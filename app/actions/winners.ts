@@ -12,7 +12,9 @@ const ALLOWED_TYPES = ["image/jpeg", "image/png", "application/pdf"]
  */
 export async function submitProofAction(winnerId: string, formData: FormData) {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   if (!user) throw new Error("Unauthorized")
 
   const file = formData.get("file") as File
@@ -45,16 +47,15 @@ export async function submitProofAction(winnerId: string, formData: FormData) {
   }
 
   // 3. Get Public URL
-  const { data: { publicUrl } } = supabase.storage
-    .from("winner-proofs")
-    .getPublicUrl(filePath)
+  const {
+    data: { publicUrl },
+  } = supabase.storage.from("winner-proofs").getPublicUrl(filePath)
 
   // 4. Update the winner record
-  const { error: updateError } = await (supabaseAdmin
-    .from("winners") as any)
-    .update({ 
+  const { error: updateError } = await (supabaseAdmin.from("winners") as any)
+    .update({
       proof_url: publicUrl,
-      verification_status: "pending" // Reset status to pending on re-upload
+      verification_status: "pending", // Reset status to pending on re-upload
     })
     .eq("id", winnerId)
     .eq("user_id", user.id) // Security check

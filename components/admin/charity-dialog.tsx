@@ -46,7 +46,10 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
     setLoading(true)
 
     try {
-      const url = mode === "add" ? "/api/admin/charities" : `/api/admin/charities/${charity?.id}`
+      const url =
+        mode === "add"
+          ? "/api/admin/charities"
+          : `/api/admin/charities/${charity?.id}`
       const method = mode === "add" ? "POST" : "PATCH"
 
       const response = await fetch(url, {
@@ -95,9 +98,12 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
         throw new Error(data.error || "Failed to update status")
       }
 
-      toast.success(newActiveState ? "Charity activated" : "Charity deactivated", {
-        description: `"${charity.name}" is now ${newActiveState ? "active" : "inactive"}.`,
-      })
+      toast.success(
+        newActiveState ? "Charity activated" : "Charity deactivated",
+        {
+          description: `"${charity.name}" is now ${newActiveState ? "active" : "inactive"}.`,
+        }
+      )
 
       router.refresh()
     } catch (error: any) {
@@ -128,9 +134,12 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
         throw new Error(data.error || "Failed to update featured status")
       }
 
-      toast.success(newFeaturedState ? "Charity featured" : "Charity unfeatured", {
-        description: `"${charity.name}" is now ${newFeaturedState ? "featured" : "not featured"}.`,
-      })
+      toast.success(
+        newFeaturedState ? "Charity featured" : "Charity unfeatured",
+        {
+          description: `"${charity.name}" is now ${newFeaturedState ? "featured" : "not featured"}.`,
+        }
+      )
 
       router.refresh()
     } catch (error: any) {
@@ -163,7 +172,9 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
       <DialogContent className="sm:max-w-125">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>{mode === "add" ? "Add New Charity" : "Edit Charity"}</DialogTitle>
+            <DialogTitle>
+              {mode === "add" ? "Add New Charity" : "Edit Charity"}
+            </DialogTitle>
             <DialogDescription>
               {mode === "add"
                 ? "Create a new charity for users to support."
@@ -176,7 +187,9 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
               <Input
                 id="name"
                 value={formData.name}
-                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, name: e.target.value }))
+                }
                 placeholder="e.g., Red Cross"
                 required
               />
@@ -186,7 +199,12 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
               <Textarea
                 id="description"
                 value={formData.description}
-                onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    description: e.target.value,
+                  }))
+                }
                 placeholder="Describe the charity's mission and impact..."
                 rows={3}
                 required
@@ -197,7 +215,12 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
               <Input
                 id="website"
                 value={formData.website_url}
-                onChange={(e) => setFormData((prev) => ({ ...prev, website_url: e.target.value }))}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    website_url: e.target.value,
+                  }))
+                }
                 placeholder="https://example.org"
                 type="url"
               />
@@ -208,7 +231,12 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
                 <Input
                   id="logo"
                   value={formData.logo_url}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, logo_url: e.target.value }))}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      logo_url: e.target.value,
+                    }))
+                  }
                   placeholder="https://..."
                   type="url"
                 />
@@ -218,7 +246,12 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
                 <Input
                   id="cover"
                   value={formData.cover_image_url}
-                  onChange={(e) => setFormData((prev) => ({ ...prev, cover_image_url: e.target.value }))}
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      cover_image_url: e.target.value,
+                    }))
+                  }
                   placeholder="https://..."
                   type="url"
                 />
@@ -254,7 +287,12 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
             )}
           </div>
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => setOpen(false)} disabled={loading}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setOpen(false)}
+              disabled={loading}
+            >
               Cancel
             </Button>
             <Button type="submit" disabled={loading} className="gap-2">

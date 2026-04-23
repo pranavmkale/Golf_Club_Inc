@@ -27,7 +27,10 @@ export async function signIn(prevState: any, formData: FormData) {
         })
 
         // Retry sign-in now that email is confirmed
-        const { error: retryError } = await supabase.auth.signInWithPassword({ email, password })
+        const { error: retryError } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        })
         if (!retryError) redirect("/dashboard")
         return { error: "Wrong password. Please try again." }
       }

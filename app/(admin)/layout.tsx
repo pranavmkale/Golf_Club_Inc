@@ -24,7 +24,9 @@ export default async function AdminLayout({
   children: React.ReactNode
 }) {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   if (!user) redirect("/login")
 
@@ -46,14 +48,17 @@ export default async function AdminLayout({
         <header className="flex h-16 shrink-0 items-center gap-2 border-b border-border">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="h-4 self-center! bg-border mx-1" />
+            <Separator
+              orientation="vertical"
+              className="mx-1 h-4 self-center! bg-border"
+            />
             <DashboardBreadcrumb />
           </div>
           <div className="ml-auto flex items-center gap-3 px-4">
             {/* Admin pill indicator */}
             <Badge
               variant="destructive"
-              className="hidden sm:flex items-center gap-1 text-[10px] uppercase tracking-widest"
+              className="hidden items-center gap-1 text-[10px] tracking-widest uppercase sm:flex"
             >
               <ShieldAlert className="h-3 w-3" />
               Admin Panel
@@ -63,9 +68,7 @@ export default async function AdminLayout({
         </header>
 
         {/* ── Content — exact sidebar-08 content area ── */}
-        <div className="flex flex-1 flex-col gap-4 px-8 pb-8">
-          {children}
-        </div>
+        <div className="flex flex-1 flex-col gap-4 px-8 pb-8">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   )

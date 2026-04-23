@@ -23,13 +23,12 @@ export async function GET() {
     // Assume $5/subscriber
     const estimatedRevenue = (activeSubs || 0) * 5
     const pools = calculatePrizePools(estimatedRevenue)
-    
+
     // 4. Calculate total jackpot
     const totalJackpot = pools.jackpot + rollover
 
     // 5. Check if the last draw resulted in a rollover to show badges
-    const { data: lastDraw } = await (supabaseAdmin
-      .from("draws") as any)
+    const { data: lastDraw } = await (supabaseAdmin.from("draws") as any)
       .select("jackpot_rolled_over")
       .eq("status", "published")
       .order("draw_month", { ascending: false })

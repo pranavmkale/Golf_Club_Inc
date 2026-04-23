@@ -6,7 +6,10 @@ import { Score } from "@/lib/types/database"
  * - Score must be an integer between 1 and 45.
  * - Date must be valid and not in the future.
  */
-export function validateScore(score: number, dateStr: string): { valid: boolean; error?: string } {
+export function validateScore(
+  score: number,
+  dateStr: string
+): { valid: boolean; error?: string } {
   if (!Number.isInteger(score) || score < 1 || score > 45) {
     return { valid: false, error: "Score must be an integer between 1 and 45" }
   }

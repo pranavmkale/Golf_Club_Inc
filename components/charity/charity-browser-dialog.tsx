@@ -41,7 +41,7 @@ export function CharityBrowserDialog({
 
   const handleConfirm = () => {
     if (!selectedId) return
-    
+
     startTransition(async () => {
       try {
         const result = await selectCharityAction(selectedId)
@@ -68,7 +68,7 @@ export function CharityBrowserDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-hidden flex flex-col p-0">
+      <DialogContent className="flex max-h-[90vh] flex-col overflow-hidden p-0 sm:max-w-xl">
         <div className="p-6 pb-2">
           <DialogHeader className="mb-4">
             <DialogTitle>Choose a charity</DialogTitle>
@@ -78,7 +78,7 @@ export function CharityBrowserDialog({
           </DialogHeader>
 
           <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               placeholder="Search charities..."
               className="pl-10"
@@ -98,7 +98,7 @@ export function CharityBrowserDialog({
           />
         </div>
 
-        <div className="p-6 pt-2 border-t bg-muted/20 flex flex-col sm:flex-row-reverse gap-2">
+        <div className="flex flex-col gap-2 border-t bg-muted/20 p-6 pt-2 sm:flex-row-reverse">
           <Button
             onClick={handleConfirm}
             disabled={!selectedId || isPending}

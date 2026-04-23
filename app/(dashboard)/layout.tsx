@@ -35,7 +35,10 @@ export default async function DashboardLayout({
         <header className="flex h-16 shrink-0 items-center gap-2 border-b border-border">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="h-4 self-center! bg-border mx-1" />
+            <Separator
+              orientation="vertical"
+              className="mx-1 h-4 self-center! bg-border"
+            />
             <DashboardBreadcrumb />
           </div>
           <div className="ml-auto flex items-center gap-2 px-4">
@@ -43,9 +46,7 @@ export default async function DashboardLayout({
           </div>
         </header>
 
-        <div className="flex flex-1 flex-col gap-4 px-8 pb-8">
-          {children}
-        </div>
+        <div className="flex flex-1 flex-col gap-4 px-8 pb-8">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   )

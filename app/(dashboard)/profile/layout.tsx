@@ -18,9 +18,7 @@ export default function ProfileLayout({
         title="Profile"
         description="Manage your account and preferences."
       />
-      <Card className="flex-1 p-6 shadow-none">
-        {children}
-      </Card>
+      <Card className="flex-1 p-6 shadow-none">{children}</Card>
     </div>
   )
 }

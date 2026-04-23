@@ -107,8 +107,9 @@ export function DrawActions({ drawId, drawStatus }: DrawActionsProps) {
                     Publish Draw
                   </DialogTitle>
                   <DialogDescription>
-                    Are you sure you want to publish this draw? This action cannot be undone.
-                    Winners will be notified via email and the draw results will be made public.
+                    Are you sure you want to publish this draw? This action
+                    cannot be undone. Winners will be notified via email and the
+                    draw results will be made public.
                   </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>

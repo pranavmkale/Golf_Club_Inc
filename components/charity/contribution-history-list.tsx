@@ -12,11 +12,15 @@ interface ContributionHistoryListProps {
   contributions: ContributionWithCharity[]
 }
 
-export function ContributionHistoryList({ contributions }: ContributionHistoryListProps) {
+export function ContributionHistoryList({
+  contributions,
+}: ContributionHistoryListProps) {
   return (
     <div className="space-y-6">
       <div className="space-y-1">
-        <h3 className="text-lg font-bold tracking-tight">Contribution history</h3>
+        <h3 className="text-lg font-bold tracking-tight">
+          Contribution history
+        </h3>
         <p className="text-sm text-muted-foreground italic">
           Track the monthly impact of your subscriptions.
         </p>
@@ -35,7 +39,7 @@ export function ContributionHistoryList({ contributions }: ContributionHistoryLi
           {contributions.map((contribution) => (
             <div
               key={contribution.id}
-              className="flex items-center justify-between gap-4 rounded-xl border border-sidebar-border bg-sidebar px-4 py-3 shadow-sm transition-hover hover:border-primary/20"
+              className="transition-hover flex items-center justify-between gap-4 rounded-xl border border-sidebar-border bg-sidebar px-4 py-3 shadow-sm hover:border-primary/20"
             >
               <div className="flex items-center gap-3">
                 <Avatar className="h-8 w-8 border border-border/10">
@@ -45,24 +49,25 @@ export function ContributionHistoryList({ contributions }: ContributionHistoryLi
                   </AvatarFallback>
                 </Avatar>
                 <div className="space-y-0.5">
-                  <p className="text-sm font-bold truncate leading-tight">
+                  <p className="truncate text-sm leading-tight font-bold">
                     {contribution.charity.name}
                   </p>
-                  <p className="text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">
+                  <p className="text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">
                     {format(new Date(contribution.period_start), "MMMM yyyy")}
                   </p>
                 </div>
               </div>
 
               <div className="text-right">
-                <p className="text-lg font-black tabular-nums tracking-tight">
+                <p className="text-lg font-black tracking-tight tabular-nums">
                   £{contribution.amount.toFixed(2)}
                 </p>
               </div>
             </div>
           ))}
-          <p className="text-[10px] text-muted-foreground italic px-2 pt-2">
-            * Contributions are processed automatically with each subscription renewal.
+          <p className="px-2 pt-2 text-[10px] text-muted-foreground italic">
+            * Contributions are processed automatically with each subscription
+            renewal.
           </p>
         </div>
       )}

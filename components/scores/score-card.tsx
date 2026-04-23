@@ -10,7 +10,10 @@ interface ScoreCardProps {
 export function ScoreCard({ scores }: ScoreCardProps) {
   // Sort chronologically for the bar chart (oldest to newest)
   const chartScores = [...scores]
-    .sort((a, b) => new Date(a.played_on).getTime() - new Date(b.played_on).getTime())
+    .sort(
+      (a, b) =>
+        new Date(a.played_on).getTime() - new Date(b.played_on).getTime()
+    )
     .slice(-5)
 
   const latestScores = [...scores].sort(
@@ -24,7 +27,7 @@ export function ScoreCard({ scores }: ScoreCardProps) {
 
   const latest = latestScores[0]?.score
   const previous = latestScores[1]?.score
-  
+
   let trend: "up" | "down" | "stable" = "stable"
   if (latest && previous) {
     if (latest > previous) trend = "up"
@@ -34,27 +37,33 @@ export function ScoreCard({ scores }: ScoreCardProps) {
   return (
     <Card className="border-border/50 bg-gradient-to-br from-card to-background shadow-xl">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+        <CardTitle className="text-sm font-medium tracking-wider text-muted-foreground uppercase">
           Performance Overview
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex items-end justify-between gap-4">
           <div className="space-y-1">
-            <p className="text-3xl font-extrabold luma-gradient-text">
+            <p className="luma-gradient-text text-3xl font-extrabold">
               {avgScore}
             </p>
             <p className="text-xs text-muted-foreground">Average Score</p>
-            <div className="flex items-center gap-1 mt-2">
+            <div className="mt-2 flex items-center gap-1">
               {trend === "up" && (
                 <TrendingUp className="h-4 w-4 text-destructive" />
               )}
               {trend === "down" && (
                 <TrendingDown className="h-4 w-4 text-primary" />
               )}
-              {trend === "stable" && <Minus className="h-4 w-4 text-muted-foreground" />}
+              {trend === "stable" && (
+                <Minus className="h-4 w-4 text-muted-foreground" />
+              )}
               <span className="text-xs font-semibold">
-                {trend === "stable" ? "No change" : trend === "up" ? "Trending Up" : "Trending Down"}
+                {trend === "stable"
+                  ? "No change"
+                  : trend === "up"
+                    ? "Trending Up"
+                    : "Trending Down"}
               </span>
             </div>
           </div>
@@ -63,7 +72,10 @@ export function ScoreCard({ scores }: ScoreCardProps) {
             {/* Simple CSS-based bar chart */}
             {chartScores.length > 0 ? (
               chartScores.map((s, i) => (
-                <div key={s.id} className="group relative flex flex-col items-center gap-1">
+                <div
+                  key={s.id}
+                  className="group relative flex flex-col items-center gap-1"
+                >
                   <div
                     className="w-4 rounded-t-sm bg-gradient-to-t from-primary to-primary/60 transition-all hover:to-primary/40"
                     style={{ height: `${(s.score / 45) * 100}%` }}

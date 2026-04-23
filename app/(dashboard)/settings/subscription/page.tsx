@@ -33,9 +33,11 @@ export default async function SubscriptionPage() {
   }
 
   const priceIds = getPriceIds()
-  
+
   if (!priceIds.monthly || !priceIds.yearly) {
-    throw new Error("Stripe price IDs are not configured in environment variables")
+    throw new Error(
+      "Stripe price IDs are not configured in environment variables"
+    )
   }
 
   // Fetch real-time price info from Stripe
@@ -70,7 +72,9 @@ export default async function SubscriptionPage() {
         const subscription = subscriptions.data[0] as any
         subscriptionDetails = {
           cancelAtPeriodEnd: subscription.cancel_at_period_end,
-          currentPeriodEnd: new Date(subscription.current_period_end * 1000).toISOString(),
+          currentPeriodEnd: new Date(
+            subscription.current_period_end * 1000
+          ).toISOString(),
           status: subscription.status,
         }
       }
@@ -86,7 +90,9 @@ export default async function SubscriptionPage() {
         description="Manage your subscription and billing details."
       >
         <Badge
-          variant={profile.subscription_status === "active" ? "default" : "secondary"}
+          variant={
+            profile.subscription_status === "active" ? "default" : "secondary"
+          }
           className="px-3 py-1 text-sm font-medium capitalize"
         >
           {profile.subscription_status || "Inactive"}

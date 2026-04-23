@@ -21,8 +21,8 @@ export async function CharitySpotlight() {
     <section className="py-24 lg:px-24">
       <div className="container mx-auto px-6">
         {/* Section label */}
-        <div className="mb-12 flex items-center gap-2 justify-center">
-          <span className="flex items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
+        <div className="mb-12 flex items-center justify-center gap-2">
+          <span className="flex items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-1.5 text-xs font-bold tracking-[0.18em] text-muted-foreground uppercase">
             <Heart className="h-3.5 w-3.5 text-primary" />
             Featured charity partner
           </span>
@@ -52,7 +52,7 @@ export async function CharitySpotlight() {
 
           {/* Text */}
           <div className="flex flex-col gap-6">
-            <h2 className="text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl leading-tight font-black tracking-tight sm:text-4xl lg:text-5xl">
               {charity.name}
             </h2>
 
@@ -63,13 +63,17 @@ export async function CharitySpotlight() {
             <div className="rounded-2xl border border-border/40 bg-muted/30 p-5">
               <p className="text-sm text-muted-foreground">
                 Your subscription automatically contributes a minimum of{" "}
-                <strong className="text-foreground">10%</strong> to this cause — every single month,
-                guaranteed.
+                <strong className="text-foreground">10%</strong> to this cause —
+                every single month, guaranteed.
               </p>
             </div>
 
             <div>
-              <Button asChild variant="outline" className="h-11 px-7 text-sm font-bold uppercase tracking-wider">
+              <Button
+                asChild
+                variant="outline"
+                className="h-11 px-7 text-sm font-bold tracking-wider uppercase"
+              >
                 <Link href="/charity">See all our charities</Link>
               </Button>
             </div>

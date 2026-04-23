@@ -5,7 +5,10 @@ import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
 export function JackpotTicker() {
-  const [data, setData] = React.useState<{ amount: number; hasRollover: boolean } | null>(null)
+  const [data, setData] = React.useState<{
+    amount: number
+    hasRollover: boolean
+  } | null>(null)
   const [displayAmount, setDisplayAmount] = React.useState(0)
 
   // 1. Fetch jackpot data
@@ -51,23 +54,24 @@ export function JackpotTicker() {
         {data?.hasRollover && (
           <Badge
             variant="secondary"
-            className="absolute -top-6 left-1/2 -translate-x-1/2 animate-pulse bg-primary/20 text-primary border-primary/30"
+            className="absolute -top-6 left-1/2 -translate-x-1/2 animate-pulse border-primary/30 bg-primary/20 text-primary"
           >
             Rolls over!
           </Badge>
         )}
         <h2
           className={cn(
-            "text-6xl font-black tracking-tight luma-gradient-text sm:text-8xl",
+            "luma-gradient-text text-6xl font-black tracking-tight sm:text-8xl",
             "transition-all duration-700 ease-out",
-            !data && "opacity-0 scale-95"
+            !data && "scale-95 opacity-0"
           )}
         >
           {formatter.format(displayAmount)}
         </h2>
       </div>
       <p className="max-w-[600px] text-center text-muted-foreground sm:text-lg">
-        The current jackpot for this month&apos;s draw. Play more, support charities, and win big!
+        The current jackpot for this month&apos;s draw. Play more, support
+        charities, and win big!
       </p>
 
       <style jsx>{`

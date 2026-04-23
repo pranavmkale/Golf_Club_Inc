@@ -22,7 +22,9 @@ export function CharityBrowserGrid({
     return (
       <div className="flex flex-col items-center justify-center p-8 text-center">
         <p className="text-sm text-muted-foreground">No charities found</p>
-        <p className="text-xs text-muted-foreground/60">Try a different search term</p>
+        <p className="text-xs text-muted-foreground/60">
+          Try a different search term
+        </p>
       </div>
     )
   }
@@ -41,22 +43,24 @@ export function CharityBrowserGrid({
             className={cn(
               "flex flex-row items-center gap-4 rounded-xl border p-3 text-left transition-all",
               isCurrent
-                ? "border-emerald-500/20 bg-emerald-500/5 cursor-default opacity-80"
+                ? "cursor-default border-emerald-500/20 bg-emerald-500/5 opacity-80"
                 : isSelected
-                ? "border-primary bg-primary/5 ring-1 ring-primary"
-                : "border-border/50 bg-card hover:border-primary/30 hover:bg-accent/30"
+                  ? "border-primary bg-primary/5 ring-1 ring-primary"
+                  : "border-border/50 bg-card hover:border-primary/30 hover:bg-accent/30"
             )}
           >
             <Avatar className="h-10 w-10 shrink-0 border border-border/10 shadow-sm">
               <AvatarImage src={charity.logo_url || ""} alt={charity.name} />
-              <AvatarFallback className="bg-primary/10 text-primary font-bold">
+              <AvatarFallback className="bg-primary/10 font-bold text-primary">
                 {charity.name.charAt(0)}
               </AvatarFallback>
             </Avatar>
 
-            <div className="flex-1 min-w-0 space-y-0.5">
-              <p className="text-sm font-bold truncate tracking-tight">{charity.name}</p>
-              <p className="text-xs text-muted-foreground line-clamp-2 leading-snug">
+            <div className="min-w-0 flex-1 space-y-0.5">
+              <p className="truncate text-sm font-bold tracking-tight">
+                {charity.name}
+              </p>
+              <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
                 {charity.description}
               </p>
             </div>
@@ -65,12 +69,14 @@ export function CharityBrowserGrid({
               {isCurrent ? (
                 <div className="flex items-center gap-1 text-emerald-600">
                   <CheckCircle2 className="h-4 w-4" />
-                  <span className="text-[10px] font-bold uppercase tracking-wider">Current</span>
+                  <span className="text-[10px] font-bold tracking-wider uppercase">
+                    Current
+                  </span>
                 </div>
               ) : (
                 <span
                   className={cn(
-                    "inline-flex h-7 items-center rounded-4xl border px-3 text-[10px] font-bold uppercase tracking-wider",
+                    "inline-flex h-7 items-center rounded-4xl border px-3 text-[10px] font-bold tracking-wider uppercase",
                     isSelected
                       ? "border-primary bg-primary/10 text-primary"
                       : "border-border/60 bg-background text-muted-foreground"

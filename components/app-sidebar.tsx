@@ -15,7 +15,18 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, LifeBuoyIcon, SendIcon, FrameIcon, PieChartIcon, MapIcon, TerminalIcon } from "lucide-react"
+import {
+  TerminalSquareIcon,
+  BotIcon,
+  BookOpenIcon,
+  Settings2Icon,
+  LifeBuoyIcon,
+  SendIcon,
+  FrameIcon,
+  PieChartIcon,
+  MapIcon,
+  TerminalIcon,
+} from "lucide-react"
 
 const data = {
   user: {
@@ -27,10 +38,7 @@ const data = {
     {
       title: "Dashboard",
       url: "/dashboard",
-      icon: (
-        <TerminalSquareIcon
-        />
-      ),
+      icon: <TerminalSquareIcon />,
       isActive: true,
       items: [
         {
@@ -46,10 +54,7 @@ const data = {
     {
       title: "Account",
       url: "/profile",
-      icon: (
-        <BotIcon
-        />
-      ),
+      icon: <BotIcon />,
       items: [
         {
           title: "Profile",
@@ -64,10 +69,7 @@ const data = {
     {
       title: "Documentation",
       url: "#",
-      icon: (
-        <BookOpenIcon
-        />
-      ),
+      icon: <BookOpenIcon />,
       items: [
         {
           title: "Introduction",
@@ -84,36 +86,24 @@ const data = {
     {
       title: "Settings",
       url: "/settings",
-      icon: (
-        <Settings2Icon
-        />
-      ),
+      icon: <Settings2Icon />,
     },
     {
       title: "Support",
       url: "#",
-      icon: (
-        <LifeBuoyIcon
-        />
-      ),
+      icon: <LifeBuoyIcon />,
     },
     {
       title: "Feedback",
       url: "#",
-      icon: (
-        <SendIcon
-        />
-      ),
+      icon: <SendIcon />,
     },
   ],
   projects: [
     {
       name: "Core Template",
       url: "/",
-      icon: (
-        <FrameIcon
-        />
-      ),
+      icon: <FrameIcon />,
     },
   ],
 }

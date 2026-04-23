@@ -26,15 +26,17 @@ export function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="py-24 border-y border-border/40 bg-muted/20 lg:px-24"
+      className="border-y border-border/40 bg-muted/20 py-24 lg:px-24"
     >
       <div className="container mx-auto px-6">
         {/* Heading */}
         <div className="mb-16 text-center">
-          <h2 className="text-3xl font-black uppercase tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-black tracking-tight uppercase sm:text-4xl">
             Here&apos;s how it works
           </h2>
-          <p className="mt-3 text-muted-foreground">Three simple steps. Real impact.</p>
+          <p className="mt-3 text-muted-foreground">
+            Three simple steps. Real impact.
+          </p>
         </div>
 
         {/* Steps grid */}
@@ -42,12 +44,12 @@ export function HowItWorks() {
           {steps.map((step) => (
             <Card
               key={step.number}
-              className="p-0 group relative overflow-hidden border-border/50 bg-card/40 transition-transform duration-200 hover:-translate-y-1"
+              className="group relative overflow-hidden border-border/50 bg-card/40 p-0 transition-transform duration-200 hover:-translate-y-1"
             >
               {/* Faint background numeral */}
               <span
                 aria-hidden
-                className="pointer-events-none absolute right-4 top-2 select-none text-[7rem] font-black leading-none text-foreground"
+                className="pointer-events-none absolute top-2 right-4 text-[7rem] leading-none font-black text-foreground select-none"
                 style={{ opacity: 0.04 }}
               >
                 {step.number}
@@ -60,11 +62,13 @@ export function HowItWorks() {
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <step.icon className="h-5 w-5" />
                 </div>
-                <h3 className="text-lg font-bold leading-snug">{step.title}</h3>
+                <h3 className="text-lg leading-snug font-bold">{step.title}</h3>
               </CardHeader>
 
               <CardContent className="pb-8">
-                <p className="text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {step.body}
+                </p>
               </CardContent>
             </Card>
           ))}

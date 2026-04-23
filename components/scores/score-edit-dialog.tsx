@@ -33,7 +33,12 @@ interface ScoreEditDialogProps {
   onSuccess: () => void
 }
 
-export function ScoreEditDialog({ score, open, onOpenChange, onSuccess }: ScoreEditDialogProps) {
+export function ScoreEditDialog({
+  score,
+  open,
+  onOpenChange,
+  onSuccess,
+}: ScoreEditDialogProps) {
   const [date, setDate] = React.useState<Date>(new Date(score.played_on))
 
   // Bind scoreId to create a useActionState-compatible action
@@ -76,9 +81,11 @@ export function ScoreEditDialog({ score, open, onOpenChange, onSuccess }: ScoreE
               defaultValue={score.score}
               required
               disabled={isPending}
-              className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              className="[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             />
-            <p className="text-xs text-muted-foreground">Must be between 1 and 45</p>
+            <p className="text-xs text-muted-foreground">
+              Must be between 1 and 45
+            </p>
           </div>
 
           {/* Date picker */}

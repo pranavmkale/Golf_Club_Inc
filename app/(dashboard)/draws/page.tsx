@@ -15,31 +15,32 @@ export const metadata = createMetadata(
 
 export default async function DrawsPage() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   if (!user) redirect("/login")
 
   // 1. Fetch scores first (needed for latest draw ID)
-  const [{ data: scoresData }, { data: profileData }, { data: latestDrawData }] =
-    await Promise.all([
-      supabase
-        .from("scores")
-        .select("*")
-        .eq("user_id", user.id)
-        .order("played_on", { ascending: false })
-        .limit(5),
-      supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", user.id)
-        .single(),
-      supabase
-        .from("draws")
-        .select("*")
-        .eq("status", "published")
-        .order("draw_month", { ascending: false })
-        .limit(1)
-        .single(),
-    ])
+  const [
+    { data: scoresData },
+    { data: profileData },
+    { data: latestDrawData },
+  ] = await Promise.all([
+    supabase
+      .from("scores")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("played_on", { ascending: false })
+      .limit(5),
+    supabase.from("profiles").select("*").eq("id", user.id).single(),
+    supabase
+      .from("draws")
+      .select("*")
+      .eq("status", "published")
+      .order("draw_month", { ascending: false })
+      .limit(1)
+      .single(),
+  ])
 
   const scores: Score[] = scoresData ?? []
   const profile = profileData as Profile | null
@@ -77,7 +78,9 @@ export default async function DrawsPage() {
     const entries = (draw.draw_entries ?? []) as DrawEntry[]
     const userEntry = entries.find((e) => e.user_id === user.id) ?? null
     const { draw_entries: _, ...drawWithout } = draw
-    return { ...drawWithout, userEntry } as Draw & { userEntry: DrawEntry | null }
+    return { ...drawWithout, userEntry } as Draw & {
+      userEntry: DrawEntry | null
+    }
   })
 
   const isSubscribed = profile?.subscription_status === "active"

@@ -15,7 +15,13 @@ import {
   Pie,
   Cell,
 } from "recharts"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card"
 import { format, subDays, eachDayOfInterval, parseISO } from "date-fns"
 import { Trophy } from "lucide-react"
 
@@ -36,7 +42,12 @@ interface AnalyticsDashboardProps {
 
 const COLORS = ["#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#8b5cf6"]
 
-export function AnalyticsDashboard({ users, draws, contributions, winners }: AnalyticsDashboardProps) {
+export function AnalyticsDashboard({
+  users,
+  draws,
+  contributions,
+  winners,
+}: AnalyticsDashboardProps) {
   // User growth over time (last 30 days)
   const userGrowthData = useMemo(() => {
     const days = eachDayOfInterval({
@@ -66,7 +77,10 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
       jackpot: Number(draw.jackpot_amount) || 0,
       tier4: Number(draw.tier_4_amount) || 0,
       tier3: Number(draw.tier_3_amount) || 0,
-      total: Number(draw.jackpot_amount) + Number(draw.tier_4_amount) + Number(draw.tier_3_amount),
+      total:
+        Number(draw.jackpot_amount) +
+        Number(draw.tier_4_amount) +
+        Number(draw.tier_3_amount),
     }))
   }, [draws])
 
@@ -76,7 +90,8 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
 
     contributions.forEach((c) => {
       const month = format(parseISO(c.created_at), "MMM yyyy")
-      monthlyContributions[month] = (monthlyContributions[month] || 0) + Number(c.amount)
+      monthlyContributions[month] =
+        (monthlyContributions[month] || 0) + Number(c.amount)
     })
 
     return Object.entries(monthlyContributions)
@@ -95,9 +110,21 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
     })
 
     return [
-      { name: "Jackpot", value: tiers.jackpot || 0, amount: amounts.jackpot || 0 },
-      { name: "4-Match", value: tiers.tier_4 || 0, amount: amounts.tier_4 || 0 },
-      { name: "3-Match", value: tiers.tier_3 || 0, amount: amounts.tier_3 || 0 },
+      {
+        name: "Jackpot",
+        value: tiers.jackpot || 0,
+        amount: amounts.jackpot || 0,
+      },
+      {
+        name: "4-Match",
+        value: tiers.tier_4 || 0,
+        amount: amounts.tier_4 || 0,
+      },
+      {
+        name: "3-Match",
+        value: tiers.tier_3 || 0,
+        amount: amounts.tier_3 || 0,
+      },
     ]
   }, [winners])
 
@@ -109,7 +136,10 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
       statusCounts[status] = (statusCounts[status] || 0) + 1
     })
 
-    return Object.entries(statusCounts).map(([name, value]) => ({ name, value }))
+    return Object.entries(statusCounts).map(([name, value]) => ({
+      name,
+      value,
+    }))
   }, [users])
 
   const [mounted, setMounted] = useState(false)
@@ -124,10 +154,12 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
         <Card className="border-border/50">
           <CardHeader>
             <CardTitle>User Growth (Last 30 Days)</CardTitle>
-            <CardDescription>New user signups and total user count over time</CardDescription>
+            <CardDescription>
+              New user signups and total user count over time
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-75 flex items-center justify-center">
+            <div className="flex h-75 items-center justify-center">
               <p className="text-muted-foreground">Loading charts...</p>
             </div>
           </CardContent>
@@ -136,7 +168,7 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
           {[1, 2, 3, 4].map((i) => (
             <Card key={i} className="border-border/50">
               <CardContent className="p-6">
-                <div className="h-62.5 flex items-center justify-center">
+                <div className="flex h-62.5 items-center justify-center">
                   <p className="text-muted-foreground">Loading...</p>
                 </div>
               </CardContent>
@@ -153,7 +185,9 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
       <Card className="border-border/50">
         <CardHeader>
           <CardTitle>User Growth (Last 30 Days)</CardTitle>
-          <CardDescription>New user signups and total user count over time</CardDescription>
+          <CardDescription>
+            New user signups and total user count over time
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="h-75">
@@ -213,9 +247,24 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
                     }}
                     formatter={(value) => `£${Number(value).toLocaleString()}`}
                   />
-                  <Bar dataKey="jackpot" stackId="a" fill="#f59e0b" name="Jackpot" />
-                  <Bar dataKey="tier4" stackId="a" fill="#3b82f6" name="4-Match" />
-                  <Bar dataKey="tier3" stackId="a" fill="#10b981" name="3-Match" />
+                  <Bar
+                    dataKey="jackpot"
+                    stackId="a"
+                    fill="#f59e0b"
+                    name="Jackpot"
+                  />
+                  <Bar
+                    dataKey="tier4"
+                    stackId="a"
+                    fill="#3b82f6"
+                    name="4-Match"
+                  />
+                  <Bar
+                    dataKey="tier3"
+                    stackId="a"
+                    fill="#10b981"
+                    name="3-Match"
+                  />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -260,39 +309,40 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
           </CardHeader>
           <CardContent>
             <div className="h-62.5">
-              {
-                winnerTierData.every((tier) => tier.value === 0) ? (
-                  <div className="h-full flex flex-col items-center justify-center">
-                    <Trophy className="h-8 w-8 text-muted-foreground mb-2" />
-                    <p className="text-muted-foreground">No winners yet</p>
-                  </div>
-                ) : (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <PieChart>
-                      <Pie
-                        data={winnerTierData}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={60}
-                        outerRadius={80}
-                        paddingAngle={5}
-                        dataKey="value"
-                      >
-                        {winnerTierData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
-                )
-              }
+              {winnerTierData.every((tier) => tier.value === 0) ? (
+                <div className="flex h-full flex-col items-center justify-center">
+                  <Trophy className="mb-2 h-8 w-8 text-muted-foreground" />
+                  <p className="text-muted-foreground">No winners yet</p>
+                </div>
+              ) : (
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={winnerTierData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={80}
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      {winnerTierData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
+                </ResponsiveContainer>
+              )}
             </div>
-            <div className="flex justify-center gap-4 mt-4">
+            <div className="mt-4 flex justify-center gap-4">
               {winnerTierData.map((tier, index) => (
                 <div key={tier.name} className="flex items-center gap-2">
                   <div
-                    className="w-3 h-3 rounded-full"
+                    className="h-3 w-3 rounded-full"
                     style={{ backgroundColor: COLORS[index % COLORS.length] }}
                   />
                   <span className="text-sm text-muted-foreground">
@@ -323,7 +373,10 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
                     label={({ name, value }) => `${name}: ${value}`}
                   >
                     {subscriptionData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
                     ))}
                   </Pie>
                   <Tooltip />

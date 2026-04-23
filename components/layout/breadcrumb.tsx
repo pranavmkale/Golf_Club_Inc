@@ -51,11 +51,15 @@ export function DashboardBreadcrumb() {
           return (
             <span key={crumb.href} className="flex items-center gap-1.5">
               {i > 0 && <BreadcrumbSeparator className="hidden md:block" />}
-              <BreadcrumbItem className={i < crumbs.length - 1 ? "hidden md:block" : ""}>
+              <BreadcrumbItem
+                className={i < crumbs.length - 1 ? "hidden md:block" : ""}
+              >
                 {isLast ? (
                   <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
                 ) : (
-                  <BreadcrumbLink href={crumb.href}>{crumb.label}</BreadcrumbLink>
+                  <BreadcrumbLink href={crumb.href}>
+                    {crumb.label}
+                  </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
             </span>

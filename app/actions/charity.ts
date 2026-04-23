@@ -46,7 +46,10 @@ export async function updateCharityPercentageAction(percentage: number) {
 
   // Validation: integer, min 10, max 100
   if (!Number.isInteger(percentage) || percentage < 10 || percentage > 100) {
-    return { success: false, error: "Percentage must be an integer between 10 and 100" }
+    return {
+      success: false,
+      error: "Percentage must be an integer between 10 and 100",
+    }
   }
 
   const { error } = await supabase

@@ -32,14 +32,14 @@ function getScoreColor(score: number): string {
 function ScoreBar({ score }: { score: number }) {
   const percent = Math.round((score / 45) * 100)
   return (
-    <div className="flex-1 flex items-center gap-2 min-w-0">
-      <div className="relative h-1.5 w-full rounded-full bg-muted overflow-hidden">
+    <div className="flex min-w-0 flex-1 items-center gap-2">
+      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted">
         <div
           className={`h-full rounded-full transition-all duration-500 ${getScoreColor(score)}`}
           style={{ width: `${percent}%` }}
         />
       </div>
-      <span className="text-[10px] text-muted-foreground w-8 shrink-0 text-right">
+      <span className="w-8 shrink-0 text-right text-[10px] text-muted-foreground">
         {percent}%
       </span>
     </div>
@@ -78,7 +78,7 @@ export function ScoreHistoryList({ scores }: ScoreHistoryListProps) {
   return (
     <>
       <div className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground px-1">
+        <p className="px-1 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
           Score history
         </p>
 
@@ -93,7 +93,7 @@ export function ScoreHistoryList({ scores }: ScoreHistoryListProps) {
                 <p className="text-[11px] font-medium text-muted-foreground">
                   {format(new Date(score.played_on), "EEE d MMM")}
                 </p>
-                <p className="text-2xl font-black tabular-nums leading-none">
+                <p className="text-2xl leading-none font-black tabular-nums">
                   {score.score}
                 </p>
               </div>
@@ -102,7 +102,7 @@ export function ScoreHistoryList({ scores }: ScoreHistoryListProps) {
               <ScoreBar score={score.score} />
 
               {/* Right: actions */}
-              <div className="flex items-center gap-1 shrink-0">
+              <div className="flex shrink-0 items-center gap-1">
                 <Button
                   variant="ghost"
                   size="icon"
@@ -128,7 +128,7 @@ export function ScoreHistoryList({ scores }: ScoreHistoryListProps) {
 
         {/* Oldest score warning */}
         {scores.length === 5 && (
-          <p className="text-xs text-muted-foreground px-1">
+          <p className="px-1 text-xs text-muted-foreground">
             Adding a new score will automatically remove your oldest score
             (played on{" "}
             <span className="font-medium">
@@ -144,7 +144,9 @@ export function ScoreHistoryList({ scores }: ScoreHistoryListProps) {
         <ScoreEditDialog
           score={editScore}
           open={!!editScore}
-          onOpenChange={(open) => { if (!open) setEditScore(null) }}
+          onOpenChange={(open) => {
+            if (!open) setEditScore(null)
+          }}
           onSuccess={() => setEditScore(null)}
         />
       )}
@@ -152,7 +154,9 @@ export function ScoreHistoryList({ scores }: ScoreHistoryListProps) {
       {/* Delete confirm dialog */}
       <AlertDialog
         open={!!deleteTarget}
-        onOpenChange={(open) => { if (!open) setDeleteTarget(null) }}
+        onOpenChange={(open) => {
+          if (!open) setDeleteTarget(null)
+        }}
       >
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -176,7 +180,7 @@ export function ScoreHistoryList({ scores }: ScoreHistoryListProps) {
             <AlertDialogAction
               onClick={handleDelete}
               disabled={isDeleting}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="text-destructive-foreground bg-destructive hover:bg-destructive/90"
             >
               {isDeleting ? "Deleting..." : "Delete"}
             </AlertDialogAction>

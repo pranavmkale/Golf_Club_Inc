@@ -19,7 +19,10 @@ interface SectionBoundaryProps {
  * Wraps non-critical dashboard sections so a single data failure
  * doesn't crash the entire authenticated layout.
  */
-export class SectionBoundary extends React.Component<SectionBoundaryProps, SectionBoundaryState> {
+export class SectionBoundary extends React.Component<
+  SectionBoundaryProps,
+  SectionBoundaryState
+> {
   constructor(props: SectionBoundaryProps) {
     super(props)
     this.state = { hasError: false, error: null }
@@ -36,18 +39,20 @@ export class SectionBoundary extends React.Component<SectionBoundaryProps, Secti
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex flex-col items-center justify-center py-10 px-6 text-center border border-rose-500/10 rounded-2xl bg-rose-500/5 min-h-[160px]">
-          <AlertTriangle className="h-8 w-8 text-rose-500/50 mb-3" />
-          <p className="text-sm font-bold uppercase tracking-tight text-rose-500/70 mb-1">
-            {this.props.label ? `${this.props.label} unavailable` : "Section unavailable"}
+        <div className="flex min-h-[160px] flex-col items-center justify-center rounded-2xl border border-rose-500/10 bg-rose-500/5 px-6 py-10 text-center">
+          <AlertTriangle className="mb-3 h-8 w-8 text-rose-500/50" />
+          <p className="mb-1 text-sm font-bold tracking-tight text-rose-500/70 uppercase">
+            {this.props.label
+              ? `${this.props.label} unavailable`
+              : "Section unavailable"}
           </p>
-          <p className="text-xs text-muted-foreground mb-4 max-w-xs">
+          <p className="mb-4 max-w-xs text-xs text-muted-foreground">
             We couldn't load this section. Your data is safe.
           </p>
           <Button
             variant="outline"
             size="sm"
-            className="h-8 px-4 text-[10px] font-bold uppercase tracking-widest gap-1"
+            className="h-8 gap-1 px-4 text-[10px] font-bold tracking-widest uppercase"
             onClick={() => this.setState({ hasError: false, error: null })}
           >
             <RefreshCcw className="h-3 w-3" />

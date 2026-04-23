@@ -10,19 +10,20 @@ export function FinalCta() {
       <div className="container mx-auto px-6">
         <div className="mx-auto max-w-2xl text-center">
           {/* Urgency line */}
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="mb-5 text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">
             Next draw closes{" "}
             <span className="text-primary">{drawCloseDate}</span>
           </p>
 
           {/* Heading */}
-          <h2 className="text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+          <h2 className="text-4xl leading-tight font-black tracking-tight sm:text-5xl lg:text-6xl">
             Ready to play for a cause?
           </h2>
 
           {/* Subtext */}
           <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-muted-foreground">
-            Join subscribers who are winning prizes and changing lives through the sport they love.
+            Join subscribers who are winning prizes and changing lives through
+            the sport they love.
           </p>
 
           {/* Primary CTA */}
@@ -30,7 +31,7 @@ export function FinalCta() {
             <Button
               asChild
               size="lg"
-              className="h-14 px-12 text-base font-bold uppercase tracking-wider shadow-lg shadow-primary/20"
+              className="h-14 px-12 text-base font-bold tracking-wider uppercase shadow-lg shadow-primary/20"
             >
               <Link href="/register">Get started today</Link>
             </Button>

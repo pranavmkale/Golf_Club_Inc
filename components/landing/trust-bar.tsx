@@ -1,4 +1,9 @@
-import { CircleDollarSign, HeartHandshake, RotateCcw, ShieldCheck } from "lucide-react"
+import {
+  CircleDollarSign,
+  HeartHandshake,
+  RotateCcw,
+  ShieldCheck,
+} from "lucide-react"
 
 const items = [
   { icon: ShieldCheck, label: "Stripe-secured payments" },

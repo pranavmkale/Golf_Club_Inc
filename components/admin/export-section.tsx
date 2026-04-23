@@ -1,7 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Download, Loader2 } from "lucide-react"
 import { format } from "date-fns"
@@ -43,7 +49,9 @@ export function ExportSection() {
     <Card className="border-border/50">
       <CardHeader>
         <CardTitle>Export Data</CardTitle>
-        <CardDescription>Download platform data for external analysis</CardDescription>
+        <CardDescription>
+          Download platform data for external analysis
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-wrap gap-4">
         {exportButtons.map(({ type, label }) => (

@@ -37,7 +37,7 @@ export function TopBar({ profile }: TopBarProps) {
       <div className="flex items-center gap-4">
         {/* Logo / Title for mobile */}
         <div className="md:hidden">
-          <span className="text-lg font-black tracking-tighter luma-gradient-text uppercase">
+          <span className="luma-gradient-text text-lg font-black tracking-tighter uppercase">
             Golf Draw
           </span>
         </div>
@@ -47,21 +47,32 @@ export function TopBar({ profile }: TopBarProps) {
         {/* Subscription Status */}
         <Badge
           variant={isSubscribed ? "default" : "outline"}
-          className={isSubscribed ? "bg-primary/20 text-primary border-primary/30" : "text-muted-foreground"}
+          className={
+            isSubscribed
+              ? "border-primary/30 bg-primary/20 text-primary"
+              : "text-muted-foreground"
+          }
         >
           {isSubscribed ? "Active Member" : "Needs Subscription"}
         </Badge>
 
-        <Button variant="ghost" size="icon" className="relative text-muted-foreground">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative text-muted-foreground"
+        >
           <Bell className="h-5 w-5" />
-          <span className="absolute right-2.5 top-2.5 flex h-2 w-2 rounded-full bg-primary" />
+          <span className="absolute top-2.5 right-2.5 flex h-2 w-2 rounded-full bg-primary" />
         </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-9 w-9 rounded-full">
               <Avatar className="h-9 w-9">
-                <AvatarImage src={profile?.avatar_url} alt={profile?.full_name} />
+                <AvatarImage
+                  src={profile?.avatar_url}
+                  alt={profile?.full_name}
+                />
                 <AvatarFallback className="bg-primary/10 text-primary uppercase">
                   {profile?.full_name?.substring(0, 2) || "U"}
                 </AvatarFallback>
@@ -71,7 +82,9 @@ export function TopBar({ profile }: TopBarProps) {
           <DropdownMenuContent className="w-56" align="end" forceMount>
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium leading-none">{profile?.full_name}</p>
+                <p className="text-sm leading-none font-medium">
+                  {profile?.full_name}
+                </p>
                 <p className="text-xs leading-none text-muted-foreground">
                   {profile?.email}
                 </p>
@@ -87,7 +100,10 @@ export function TopBar({ profile }: TopBarProps) {
               <span>Settings</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-destructive focus:text-destructive" onClick={handleSignOut}>
+            <DropdownMenuItem
+              className="text-destructive focus:text-destructive"
+              onClick={handleSignOut}
+            >
               <LogOut className="mr-2 h-4 w-4" />
               <span>Sign out</span>
             </DropdownMenuItem>

@@ -10,7 +10,9 @@ import { format } from "date-fns"
 export async function GET() {
   try {
     const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
 
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -30,11 +32,13 @@ export async function GET() {
     // Fetch all winners with user and draw info
     const { data: winners, error: winnersError } = await supabaseAdmin
       .from("winners")
-      .select(`
+      .select(
+        `
         *,
         draw:draws(draw_month),
         profile:profiles(full_name, email)
-      `)
+      `
+      )
       .order("created_at", { ascending: false })
 
     if (winnersError) throw winnersError
@@ -56,14 +60,18 @@ export async function GET() {
     // CSV Rows
     const rows = (winners || []).map((winner: any) => [
       winner.id,
-      winner.draw?.draw_month ? format(new Date(winner.draw.draw_month), "yyyy-MM-dd") : "",
+      winner.draw?.draw_month
+        ? format(new Date(winner.draw.draw_month), "yyyy-MM-dd")
+        : "",
       winner.profile?.full_name || "",
       winner.profile?.email || "",
       winner.tier,
       winner.prize_amount || 0,
       winner.verification_status || "pending",
       winner.payout_status || "pending",
-      winner.paid_at ? format(new Date(winner.paid_at), "yyyy-MM-dd HH:mm:ss") : "",
+      winner.paid_at
+        ? format(new Date(winner.paid_at), "yyyy-MM-dd HH:mm:ss")
+        : "",
       format(new Date(winner.created_at), "yyyy-MM-dd HH:mm:ss"),
     ])
 

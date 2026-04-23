@@ -23,7 +23,9 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label>Email Notifications</Label>
-                <p className="text-xs text-muted-foreground">Receive weekly digests and important updates.</p>
+                <p className="text-xs text-muted-foreground">
+                  Receive weekly digests and important updates.
+                </p>
               </div>
               <Switch defaultChecked />
             </div>
@@ -31,7 +33,9 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label>Desktop Alerts</Label>
-                <p className="text-xs text-muted-foreground">Show popup notifications on your computer.</p>
+                <p className="text-xs text-muted-foreground">
+                  Show popup notifications on your computer.
+                </p>
               </div>
               <Switch />
             </div>
@@ -39,7 +43,9 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label>Marketing Emails</Label>
-                <p className="text-xs text-muted-foreground">Receive news about new features and offers.</p>
+                <p className="text-xs text-muted-foreground">
+                  Receive news about new features and offers.
+                </p>
               </div>
               <Switch />
             </div>
@@ -57,7 +63,9 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label>Compact Mode</Label>
-                <p className="text-xs text-muted-foreground">Reduce spacing to show more content.</p>
+                <p className="text-xs text-muted-foreground">
+                  Reduce spacing to show more content.
+                </p>
               </div>
               <Switch />
             </div>
@@ -65,7 +73,9 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label>High Contrast</Label>
-                <p className="text-xs text-muted-foreground">Increase visibility for key interface elements.</p>
+                <p className="text-xs text-muted-foreground">
+                  Increase visibility for key interface elements.
+                </p>
               </div>
               <Switch />
             </div>
@@ -80,8 +90,9 @@ export default function SettingsPage() {
             Permanently delete your account and all data.
           </p>
           <div className="pt-2">
-            <p className="text-sm text-muted-foreground mb-4">
-              Once you delete your account, there is no going back. Please be certain.
+            <p className="mb-4 text-sm text-muted-foreground">
+              Once you delete your account, there is no going back. Please be
+              certain.
             </p>
             <Button variant="destructive">Delete Account</Button>
           </div>

@@ -3,7 +3,11 @@ import { getSiteUrl } from "@/lib/site-url"
 /**
  * subscriptionConfirmEmail - Confirmation for successful payment.
  */
-export function subscriptionConfirmEmail(name: string, plan: string, amount: number) {
+export function subscriptionConfirmEmail(
+  name: string,
+  plan: string,
+  amount: number
+) {
   return `
     <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #1a1a1a;">
       <h1 style="color: #000; font-weight: 800; text-transform: uppercase;">Payment Confirmed ✅</h1>

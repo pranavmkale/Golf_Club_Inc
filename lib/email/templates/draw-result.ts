@@ -15,12 +15,12 @@ export function drawResultEmail(
   }
 ) {
   const resultsUrl = `${getSiteUrl()}/dashboard`
-  
+
   const winnerBadge = `
     <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 24px; border-radius: 12px; text-align: center; margin: 24px 0;">
       <h2 style="color: #166534; margin: 0;">CONGRATULATIONS! 🏆</h2>
       <p style="font-size: 24px; font-weight: 900; margin: 12px 0;">£${result.amount?.toFixed(2)}</p>
-      <p style="font-size: 14px; color: #166534;">You won in the <strong>${result.tier?.replace('_', ' ').toUpperCase()}</strong> tier!</p>
+      <p style="font-size: 14px; color: #166534;">You won in the <strong>${result.tier?.replace("_", " ").toUpperCase()}</strong> tier!</p>
     </div>
   `
 
@@ -42,14 +42,14 @@ export function drawResultEmail(
       <div style="margin: 32px 0;">
         <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 8px;">Winning Numbers</p>
         <div style="display: flex; gap: 8px;">
-          ${result.winningNumbers.map(n => `<span style="display: inline-block; width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 50%; background-color: #000; color: #fff; font-weight: bold; margin-right: 4px;">${n}</span>`).join('')}
+          ${result.winningNumbers.map((n) => `<span style="display: inline-block; width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 50%; background-color: #000; color: #fff; font-weight: bold; margin-right: 4px;">${n}</span>`).join("")}
         </div>
       </div>
 
       <div style="margin: 32px 0;">
         <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 8px;">Your Registered Numbers</p>
         <div style="display: flex; gap: 8px;">
-          ${result.userNumbers.map(n => `<span style="display: inline-block; width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 50%; background-color: #f1f5f9; color: #1a1a1a; font-weight: bold; border: 1px solid #e2e8f0; margin-right: 4px;">${n}</span>`).join('')}
+          ${result.userNumbers.map((n) => `<span style="display: inline-block; width: 32px; height: 32px; line-height: 32px; text-align: center; border-radius: 50%; background-color: #f1f5f9; color: #1a1a1a; font-weight: bold; border: 1px solid #e2e8f0; margin-right: 4px;">${n}</span>`).join("")}
         </div>
       </div>
 

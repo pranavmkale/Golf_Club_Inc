@@ -16,7 +16,8 @@ export default function ForgotPasswordPage() {
     <form action={formAction} className="space-y-4">
       <div className="space-y-2 text-center">
         <p className="text-sm text-muted-foreground">
-          Enter your email address and we&apos;ll send you a link to reset your password.
+          Enter your email address and we&apos;ll send you a link to reset your
+          password.
         </p>
       </div>
 
@@ -56,7 +57,10 @@ export default function ForgotPasswordPage() {
 
       <div className="text-center text-sm">
         Remember your password?{" "}
-        <Link href="/login" className="font-semibold text-primary hover:underline">
+        <Link
+          href="/login"
+          className="font-semibold text-primary hover:underline"
+        >
           Back to Sign In
         </Link>
       </div>

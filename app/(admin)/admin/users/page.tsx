@@ -16,7 +16,9 @@ export default async function AdminUsersPage() {
     .order("created_at", { ascending: false })
 
   if (error) throw error
-  const users = (usersData || []) as (Profile & { charities: { name: string } | null })[]
+  const users = (usersData || []) as (Profile & {
+    charities: { name: string } | null
+  })[]
 
   // Fetch total score counts per user for the table
   const { data: scoreDataResult } = await supabaseAdmin

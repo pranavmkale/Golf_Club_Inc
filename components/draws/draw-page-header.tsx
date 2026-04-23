@@ -7,7 +7,10 @@ interface DrawPageHeaderProps {
   daysUntilDraw: number
 }
 
-export function DrawPageHeader({ nextDrawDate, daysUntilDraw }: DrawPageHeaderProps) {
+export function DrawPageHeader({
+  nextDrawDate,
+  daysUntilDraw,
+}: DrawPageHeaderProps) {
   const isUrgent = daysUntilDraw <= 3
 
   return (
@@ -15,12 +18,13 @@ export function DrawPageHeader({ nextDrawDate, daysUntilDraw }: DrawPageHeaderPr
       title="Monthly Draws"
       description="Your entry updates automatically as you add scores."
     >
-      <Badge 
+      <Badge
         variant={isUrgent ? "destructive" : "secondary"}
-        className="h-fit px-3 py-1 text-sm font-medium gap-1.5"
+        className="h-fit gap-1.5 px-3 py-1 text-sm font-medium"
       >
         <Clock className="h-3.5 w-3.5" />
-        Draw in {daysUntilDraw} {daysUntilDraw === 1 ? "day" : "days"} · {nextDrawDate}
+        Draw in {daysUntilDraw} {daysUntilDraw === 1 ? "day" : "days"} ·{" "}
+        {nextDrawDate}
       </Badge>
     </PageHeader>
   )

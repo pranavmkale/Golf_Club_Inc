@@ -16,7 +16,9 @@ export const metadata = createMetadata(
 
 export default async function CharityPage() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   if (!user) redirect("/login")
 
   // Fetch all required data in parallel
@@ -51,39 +53,48 @@ export default async function CharityPage() {
   const profile = profileData as (Profile & { charity: Charity | null }) | null
   const allCharities = (allCharitiesData as Charity[]) ?? []
   const contributions = (contributionsData as any[]) ?? []
-  const totalContributed = (lifetimeData ?? []).reduce((acc, curr) => acc + curr.amount, 0)
+  const totalContributed = (lifetimeData ?? []).reduce(
+    (acc, curr) => acc + curr.amount,
+    0
+  )
 
   // Subscription logic for calculation
-  const subscriptionPrice = profile?.subscription_plan === "yearly" ? 99.99 / 12 : 9.99
-  const monthlyImpact = subscriptionPrice * ((profile?.charity_percentage || 10) / 100)
+  const subscriptionPrice =
+    profile?.subscription_plan === "yearly" ? 99.99 / 12 : 9.99
+  const monthlyImpact =
+    subscriptionPrice * ((profile?.charity_percentage || 10) / 100)
 
   // 1. If NO charity selected, show persistent prompt
   if (!profile?.charity) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] space-y-6 text-center animate-in fade-in zoom-in duration-500">
+      <div className="flex min-h-[60vh] animate-in flex-col items-center justify-center space-y-6 text-center duration-500 fade-in zoom-in">
         <div className="rounded-full bg-primary/10 p-8">
-          <Heart className="h-12 w-12 text-primary fill-primary/20" />
+          <Heart className="h-12 w-12 fill-primary/20 text-primary" />
         </div>
-        <div className="space-y-2 max-w-sm">
-          <h1 className="text-2xl font-black tracking-tight">Choose your charity</h1>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            Select a charity to receive a portion of your subscription each month. 
-            You can change it at any time.
+        <div className="max-w-sm space-y-2">
+          <h1 className="text-2xl font-black tracking-tight">
+            Choose your charity
+          </h1>
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            Select a charity to receive a portion of your subscription each
+            month. You can change it at any time.
           </p>
         </div>
-        
+
         <SelectCharityClient charities={allCharities} />
       </div>
     )
   }
 
   return (
-    <div className="space-y-8 pb-12 animate-in fade-in duration-700">
+    <div className="animate-in space-y-8 pb-12 duration-700 fade-in">
       <PageHeader
         title="My Charity"
-        description={profile.charity.name 
-          ? `Supporting ${profile.charity.name} this month.` 
-          : "No charity selected yet."}
+        description={
+          profile.charity.name
+            ? `Supporting ${profile.charity.name} this month.`
+            : "No charity selected yet."
+        }
       />
 
       {/* Hero Section */}
@@ -107,4 +118,3 @@ export default async function CharityPage() {
     </div>
   )
 }
-

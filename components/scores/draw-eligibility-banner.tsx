@@ -8,7 +8,10 @@ interface DrawEligibilityBannerProps {
   scores?: Score[]
 }
 
-export function DrawEligibilityBanner({ scoreCount, scores = [] }: DrawEligibilityBannerProps) {
+export function DrawEligibilityBanner({
+  scoreCount,
+  scores = [],
+}: DrawEligibilityBannerProps) {
   // State A — no scores
   if (scoreCount === 0) {
     return (
@@ -50,9 +53,7 @@ export function DrawEligibilityBanner({ scoreCount, scores = [] }: DrawEligibili
                 ].join(" ")}
               />
             ))}
-            <span className="ml-1 text-xs font-medium">
-              {scoreCount}/5
-            </span>
+            <span className="ml-1 text-xs font-medium">{scoreCount}/5</span>
           </div>
         </AlertDescription>
       </Alert>
@@ -78,7 +79,7 @@ export function DrawEligibilityBanner({ scoreCount, scores = [] }: DrawEligibili
             <Badge
               key={i}
               variant="outline"
-              className="border-emerald-500/40 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold text-sm px-2.5"
+              className="border-emerald-500/40 bg-emerald-500/10 px-2.5 text-sm font-bold text-emerald-600 dark:text-emerald-400"
             >
               {num}
             </Badge>

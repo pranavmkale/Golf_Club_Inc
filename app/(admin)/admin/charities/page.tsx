@@ -25,7 +25,6 @@ export default async function AdminCharitiesPage() {
   if (error) throw error
   const charities = (charitiesData || []) as Charity[]
 
-
   return (
     <div className="space-y-8">
       <PageHeader
@@ -35,7 +34,7 @@ export default async function AdminCharitiesPage() {
         <CharityDialog mode="add" />
       </PageHeader>
 
-      <div className="rounded-xl border border-border/50 bg-card/20 overflow-hidden">
+      <div className="overflow-hidden rounded-xl border border-border/50 bg-card/20">
         <Table>
           <TableHeader className="bg-muted/40">
             <TableRow>
@@ -48,7 +47,10 @@ export default async function AdminCharitiesPage() {
           </TableHeader>
           <TableBody>
             {charities.map((charity) => (
-              <TableRow key={charity.id} className="hover:bg-card/40 transition-colors">
+              <TableRow
+                key={charity.id}
+                className="transition-colors hover:bg-card/40"
+              >
                 <TableCell>
                   <div className="flex items-center gap-3">
                     <Avatar className="h-10 w-10">
@@ -59,12 +61,14 @@ export default async function AdminCharitiesPage() {
                     </Avatar>
                     <div className="flex flex-col">
                       <span className="text-sm font-bold">{charity.name}</span>
-                      <span className="text-[10px] text-muted-foreground uppercase">{charity.id.split('-')[0]}</span>
+                      <span className="text-[10px] text-muted-foreground uppercase">
+                        {charity.id.split("-")[0]}
+                      </span>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell className="max-w-md">
-                  <p className="text-xs text-muted-foreground line-clamp-2">
+                  <p className="line-clamp-2 text-xs text-muted-foreground">
                     {charity.description}
                   </p>
                 </TableCell>

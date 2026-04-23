@@ -5,7 +5,10 @@ import { stripe } from "./client"
 /**
  * Verifies and constructs a Stripe webhook event.
  */
-export function constructWebhookEvent(payload: Buffer, signature: string): Stripe.Event {
+export function constructWebhookEvent(
+  payload: Buffer,
+  signature: string
+): Stripe.Event {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
 
   if (!webhookSecret) {

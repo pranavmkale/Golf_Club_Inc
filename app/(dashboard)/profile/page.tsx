@@ -7,7 +7,9 @@ import { ProfileEditForm } from "@/components/profile/profile-edit-form"
 
 export default async function ProfilePage() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
 
   if (!user) redirect("/login")
 
@@ -22,14 +24,19 @@ export default async function ProfilePage() {
   const lastName = rest.join(" ")
   const email = profile?.email || user.email || ""
   const initials = fullName
-    ? fullName.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase()
+    ? fullName
+        .split(" ")
+        .map((n: string) => n[0])
+        .join("")
+        .substring(0, 2)
+        .toUpperCase()
     : (email?.[0] || "U").toUpperCase()
 
   const isSubscribed = profile?.subscription_status === "active"
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-center gap-6">
+      <div className="flex flex-col items-center gap-6 sm:flex-row">
         <div className="space-y-1.5 text-center">
           <AvatarUpload
             avatarUrl={profile?.avatar_url}
@@ -44,7 +51,11 @@ export default async function ProfilePage() {
             <p className="text-lg font-bold">{fullName || "Your Name"}</p>
             <Badge
               variant={isSubscribed ? "default" : "outline"}
-              className={isSubscribed ? "bg-primary/10 text-primary border-primary/30" : "text-muted-foreground"}
+              className={
+                isSubscribed
+                  ? "border-primary/30 bg-primary/10 text-primary"
+                  : "text-muted-foreground"
+              }
             >
               {isSubscribed ? "Active Member" : "Inactive"}
             </Badge>

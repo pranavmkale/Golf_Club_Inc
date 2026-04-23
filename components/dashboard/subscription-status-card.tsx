@@ -49,16 +49,22 @@ export function SubscriptionStatusCard({
       <CardContent className="pt-4">
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-muted-foreground">Status</span>
+            <span className="text-sm font-medium text-muted-foreground">
+              Status
+            </span>
             <Badge
               variant={isActive ? "default" : "destructive"}
-              className={isActive ? "bg-primary/20 text-primary border-primary/30" : ""}
+              className={
+                isActive ? "border-primary/30 bg-primary/20 text-primary" : ""
+              }
             >
               {isActive ? "Active" : status.toUpperCase()}
             </Badge>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-muted-foreground">Current Plan</span>
+            <span className="text-sm font-medium text-muted-foreground">
+              Current Plan
+            </span>
             <span className="text-sm font-bold capitalize">
               {plan || "No Active Plan"}
             </span>

@@ -14,7 +14,9 @@ export const metadata = createMetadata(
 
 export default async function ScoresPage() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   if (!user) redirect("/login")
 
   const [{ data: scores }] = await Promise.all([
@@ -23,11 +25,7 @@ export default async function ScoresPage() {
       .select("*")
       .eq("user_id", user.id)
       .order("played_on", { ascending: false }),
-    supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", user.id)
-      .single(),
+    supabase.from("profiles").select("*").eq("id", user.id).single(),
   ])
 
   const safeScores: Score[] = scores ?? []
@@ -40,8 +38,11 @@ export default async function ScoresPage() {
       >
         <ScoreEntryDialog />
       </PageHeader>
-      
-      <DrawEligibilityBanner scoreCount={safeScores.length} scores={safeScores} />
+
+      <DrawEligibilityBanner
+        scoreCount={safeScores.length}
+        scores={safeScores}
+      />
 
       <ScoreHistoryList scores={safeScores} />
     </div>
