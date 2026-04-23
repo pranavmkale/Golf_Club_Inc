@@ -119,7 +119,7 @@ export function WinnerVerificationSheet({ winner, isOpen, onClose }: WinnerVerif
               </a>
             </div>
 
-            <div className="aspect-[3/4] relative w-full rounded-2xl border-2 border-dashed border-border/50 bg-muted/10 overflow-hidden">
+            <div className="aspect-3/4 relative w-full rounded-2xl border-2 border-dashed border-border/50 bg-muted/10 overflow-hidden">
               {winner.proof_url ? (
                 isPdf ? (
                   <iframe 

@@ -8,7 +8,7 @@ import { SparklesIcon } from "lucide-react"
 export function LandingNavbar() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex w-full justify-center px-4">
-      <div className="flex w-full max-w-5xl items-center justify-between rounded-full border border-border/40 bg-background/80 px-4 py-2.5 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60">
+      <div className="flex w-full max-w-5xl items-center justify-between rounded-full border border-border/40 bg-background/80 px-4 py-2.5 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
         <div className="flex w-1/3 items-center">
           <Link href="/" className="flex items-center space-x-2">
             <div className="rounded-full bg-primary p-1.5">

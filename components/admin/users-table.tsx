@@ -98,7 +98,7 @@ export function UsersTable({ users, scoreCounts }: UsersTableProps) {
               <TableHead>Charity</TableHead>
               <TableHead className="text-center">Scores</TableHead>
               <TableHead>Joined</TableHead>
-              <TableHead className="w-[50px]"></TableHead>
+              <TableHead className="w-12.5"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

@@ -100,7 +100,7 @@ export function DrawActions({ drawId, drawStatus }: DrawActionsProps) {
             </Tooltip>
 
             <Dialog open={showConfirm} onOpenChange={setShowConfirm}>
-              <DialogContent className="sm:max-w-[425px]">
+              <DialogContent className="sm:max-w-106.25">
                 <DialogHeader>
                   <DialogTitle className="flex items-center gap-2">
                     <AlertTriangle className="h-5 w-5 text-yellow-500" />

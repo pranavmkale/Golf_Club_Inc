@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { FileText, Users, Trophy, Heart, TrendingUp, Calendar } from "lucide-react"
 import Link from "next/link"
-import { ExportSection } from "./components/export-section"
+import { ExportSection } from "@/components/admin/export-section"
 
 export default async function AdminReportsPage() {
   // Fetch all required data for reports

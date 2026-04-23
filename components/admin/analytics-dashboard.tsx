@@ -17,6 +17,7 @@ import {
 } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { format, subDays, eachDayOfInterval, parseISO } from "date-fns"
+import { Trophy } from "lucide-react"
 
 interface AnalyticsDashboardProps {
   users: Array<{ created_at: string; subscription_status: string }>
@@ -126,7 +127,7 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
             <CardDescription>New user signups and total user count over time</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-[300px] flex items-center justify-center">
+            <div className="h-75 flex items-center justify-center">
               <p className="text-muted-foreground">Loading charts...</p>
             </div>
           </CardContent>
@@ -135,7 +136,7 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
           {[1, 2, 3, 4].map((i) => (
             <Card key={i} className="border-border/50">
               <CardContent className="p-6">
-                <div className="h-[250px] flex items-center justify-center">
+                <div className="h-62.5 flex items-center justify-center">
                   <p className="text-muted-foreground">Loading...</p>
                 </div>
               </CardContent>
@@ -155,7 +156,7 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
           <CardDescription>New user signups and total user count over time</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="h-[300px]">
+          <div className="h-75">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={userGrowthData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -198,7 +199,7 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
             <CardDescription>Recent draw prize distributions</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-[250px]">
+            <div className="h-62.5">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={drawData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -228,7 +229,7 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
             <CardDescription>Monthly donation totals</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-[250px]">
+            <div className="h-62.5">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={charityData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -258,25 +259,34 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
             <CardDescription>Winners by prize tier</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-[250px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={winnerTierData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={80}
-                    paddingAngle={5}
-                    dataKey="value"
-                  >
-                    {winnerTierData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
+            <div className="h-62.5">
+              {
+                winnerTierData.every((tier) => tier.value === 0) ? (
+                  <div className="h-full flex flex-col items-center justify-center">
+                    <Trophy className="h-8 w-8 text-muted-foreground mb-2" />
+                    <p className="text-muted-foreground">No winners yet</p>
+                  </div>
+                ) : (
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={winnerTierData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={60}
+                        outerRadius={80}
+                        paddingAngle={5}
+                        dataKey="value"
+                      >
+                        {winnerTierData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                    </PieChart>
+                  </ResponsiveContainer>
+                )
+              }
             </div>
             <div className="flex justify-center gap-4 mt-4">
               {winnerTierData.map((tier, index) => (
@@ -301,7 +311,7 @@ export function AnalyticsDashboard({ users, draws, contributions, winners }: Ana
             <CardDescription>User subscription distribution</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="h-[250px]">
+            <div className="h-62.5">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie

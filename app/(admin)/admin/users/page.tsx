@@ -1,8 +1,8 @@
 import { supabaseAdmin } from "@/lib/supabase/admin"
 import type { Profile } from "@/lib/types/database"
 import { PageHeader } from "@/components/layout/page-header"
-import { UsersTable } from "./components/users-table"
 import { createMetadata } from "@/lib/metadata"
+import { UsersTable } from "@/components/admin/users-table"
 
 export const metadata = createMetadata(
   "Manage Users",

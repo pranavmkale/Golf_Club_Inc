@@ -1,11 +1,10 @@
-import { createClient } from "@/lib/supabase/server"
 import { supabaseAdmin } from "@/lib/supabase/admin"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Users, Wallet, Heart, Dices, TrendingUp, Calendar, Trophy } from "lucide-react"
 import { PageHeader } from "@/components/layout/page-header"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { AnalyticsDashboard } from "../../../components/admin/analytics-dashboard"
+import { AnalyticsDashboard } from "@/components/admin/analytics-dashboard"
 
 export default async function AdminOverviewPage() {
   // Fetch all analytics data

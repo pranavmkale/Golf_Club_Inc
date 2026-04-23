@@ -94,7 +94,7 @@ export function InitializeDrawDialog() {
           Initialize New Draw
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-106.25">
         <DialogHeader>
           <DialogTitle>Initialize New Draw</DialogTitle>
           <DialogDescription>

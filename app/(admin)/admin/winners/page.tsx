@@ -1,10 +1,9 @@
 import { supabaseAdmin } from "@/lib/supabase/admin"
-import type { Winner, Profile, Draw } from "@/lib/types/database"
-
+import type { Winner } from "@/lib/types/database"
 import { Trophy } from "lucide-react"
-import { WinnersTable } from "./winners-table"
 import { PageHeader } from "@/components/layout/page-header"
 import { createMetadata } from "@/lib/metadata"
+import { WinnersTable } from "@/components/admin/winners-table"
 
 export const metadata = createMetadata(
   "Manage Winners",

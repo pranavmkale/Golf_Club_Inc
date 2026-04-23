@@ -38,7 +38,7 @@ export function WinnersTable({ initialWinners }: WinnersTableProps) {
               <TableHead>Prize</TableHead>
               <TableHead>Verification</TableHead>
               <TableHead>Payout</TableHead>
-              <TableHead className="w-[100px]"></TableHead>
+              <TableHead className="w-25"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

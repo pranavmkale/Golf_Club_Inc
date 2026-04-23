@@ -15,7 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Edit2 } from "lucide-react"
 import { PageHeader } from "@/components/layout/page-header"
-import { CharityDialog } from "./components/charity-dialog"
+import { CharityDialog } from "@/components/admin/charity-dialog"
 
 export default async function AdminCharitiesPage() {
   const { data: charitiesData, error } = await supabaseAdmin
