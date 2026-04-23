@@ -10,7 +10,7 @@ import {
 import { redirect } from "next/navigation"
 
 /**
- * Server action to initiate a Stripe Checkout session.
+ * Initiate a Stripe Checkout session.
  */
 export async function createCheckoutAction(priceId: string) {
   const supabase = await createClient()
@@ -53,7 +53,7 @@ export async function createCheckoutAction(priceId: string) {
 }
 
 /**
- * Server action to initiate a Stripe Customer Portal session.
+ * Initiate a Stripe Customer Portal session.
  */
 export async function createPortalAction() {
   const supabase = await createClient()
@@ -81,8 +81,7 @@ export async function createPortalAction() {
 }
 
 /**
- * Server action to cancel the user's subscription.
- * Cancels at period end, so user keeps access until then.
+ * Cancel the user's subscription.
  */
 export async function cancelSubscriptionAction() {
   const supabase = await createClient()

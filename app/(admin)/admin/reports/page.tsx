@@ -22,7 +22,6 @@ import Link from "next/link"
 import { ExportSection } from "@/components/admin/export-section"
 
 export default async function AdminReportsPage() {
-  // Fetch all required data for reports
   const [usersRes, drawsRes, winnersRes, charityRes, contributionsRes] =
     await Promise.all([
       supabaseAdmin
@@ -62,7 +61,6 @@ export default async function AdminReportsPage() {
     created_at: string
   }>
 
-  // Calculate stats
   const totalUsers = users.length
   const activeSubscribers = users.filter(
     (u) => u.subscription_status === "active"
@@ -78,8 +76,7 @@ export default async function AdminReportsPage() {
     0
   )
 
-  // Monthly revenue calculation
-  const monthlyRevenue = activeSubscribers * 9.99 // Assuming monthly plan price
+  const monthlyRevenue = activeSubscribers * 9.99
   const yearlyRevenue =
     users.filter((u) => u.subscription_plan === "yearly").length * (99.99 / 12)
   const estimatedMonthlyRevenue = monthlyRevenue + yearlyRevenue
@@ -126,7 +123,6 @@ export default async function AdminReportsPage() {
         description="Comprehensive platform analytics and downloadable reports."
       />
 
-      {/* Quick Stats */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {[
           {
@@ -170,7 +166,6 @@ export default async function AdminReportsPage() {
         ))}
       </div>
 
-      {/* Report Cards */}
       <div className="grid gap-6 md:grid-cols-2">
         {reportCards.map((report) => (
           <Card
@@ -209,7 +204,6 @@ export default async function AdminReportsPage() {
         ))}
       </div>
 
-      {/* Export Section */}
       <ExportSection />
     </div>
   )

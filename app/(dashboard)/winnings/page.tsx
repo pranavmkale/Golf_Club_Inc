@@ -1,22 +1,8 @@
 import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 import { format } from "date-fns"
-import {
-  Trophy,
-  FileUp,
-  ShieldAlert,
-  CheckCircle2,
-  Clock,
-  XCircle,
-} from "lucide-react"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card"
+import { Trophy, FileUp, ShieldAlert, CheckCircle2 } from "lucide-react"
+import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { submitProofAction } from "@/app/actions/winners"

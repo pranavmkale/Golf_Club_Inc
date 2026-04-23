@@ -21,7 +21,6 @@ export default async function CharityPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect("/login")
 
-  // Fetch all required data in parallel
   const [
     { data: profileData },
     { data: allCharitiesData },
@@ -58,13 +57,11 @@ export default async function CharityPage() {
     0
   )
 
-  // Subscription logic for calculation
   const subscriptionPrice =
     profile?.subscription_plan === "yearly" ? 99.99 / 12 : 9.99
   const monthlyImpact =
     subscriptionPrice * ((profile?.charity_percentage || 10) / 100)
 
-  // 1. If NO charity selected, show persistent prompt
   if (!profile?.charity) {
     return (
       <div className="flex min-h-[60vh] animate-in flex-col items-center justify-center space-y-6 text-center duration-500 fade-in zoom-in">

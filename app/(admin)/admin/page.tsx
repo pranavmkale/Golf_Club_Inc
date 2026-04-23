@@ -15,13 +15,9 @@ import Link from "next/link"
 import { AnalyticsDashboard } from "@/components/admin/analytics-dashboard"
 
 export default async function AdminOverviewPage() {
-  // Fetch all analytics data
   const [
     activeSubsRes,
-    totalUsersRes,
     prizePoolRes,
-    charityTotalRes,
-    latestEntriesRes,
     drawsRes,
     usersRes,
     contributionsRes,
@@ -69,7 +65,6 @@ export default async function AdminOverviewPage() {
       .order("created_at", { ascending: true }),
   ])
 
-  // Get last draw entry count
   const { data: lastDrawData } = await supabaseAdmin
     .from("draws")
     .select("id")

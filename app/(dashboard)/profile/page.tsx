@@ -2,7 +2,6 @@ import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { Badge } from "@/components/ui/badge"
 import { AvatarUpload } from "@/components/profile/avatar-upload"
-import { PageHeader } from "@/components/layout/page-header"
 import { ProfileEditForm } from "@/components/profile/profile-edit-form"
 
 export default async function ProfilePage() {

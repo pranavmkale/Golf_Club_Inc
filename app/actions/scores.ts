@@ -5,8 +5,7 @@ import { validateScore } from "@/lib/scores/engine"
 import { revalidatePath } from "next/cache"
 
 /**
- * Server action to add a new golf score.
- * Enforces a maximum of 5 scores per user by deleting the oldest entry if needed.
+ * Add a new golf score.
  */
 export async function addScoreAction(
   _prevState: { success: boolean; error?: string } | null,
@@ -83,8 +82,7 @@ export async function addScoreAction(
 }
 
 /**
- * Server action to update an existing score.
- * Called via updateScoreAction.bind(null, scoreId) inside useActionState.
+ * Update an existing score.
  */
 export async function updateScoreAction(
   scoreId: string,
@@ -118,7 +116,7 @@ export async function updateScoreAction(
 }
 
 /**
- * Server action to delete a score.
+ * Delete a score.
  */
 export async function deleteScoreAction(scoreId: string) {
   const supabase = await createClient()

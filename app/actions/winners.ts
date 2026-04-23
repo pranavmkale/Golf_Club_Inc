@@ -8,7 +8,7 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "application/pdf"]
 
 /**
- * submitProofAction - Handles user submission of score proof for a winning draw.
+ * Handles user submission of score proof for a winning draw.
  */
 export async function submitProofAction(winnerId: string, formData: FormData) {
   const supabase = await createClient()
@@ -20,7 +20,6 @@ export async function submitProofAction(winnerId: string, formData: FormData) {
   const file = formData.get("file") as File
   if (!file) throw new Error("No file provided")
 
-  // 1. Validation
   if (!ALLOWED_TYPES.includes(file.type)) {
     throw new Error("Invalid file type. Please upload a JPG, PNG, or PDF.")
   }
@@ -29,8 +28,6 @@ export async function submitProofAction(winnerId: string, formData: FormData) {
     throw new Error("File too large. Maximum size is 5MB.")
   }
 
-  // 2. Upload to Supabase Storage
-  // Path format: {userId}/{winnerId}.{extension}
   const fileExtension = file.name.split(".").pop()
   const filePath = `${user.id}/${winnerId}.${fileExtension}`
 
@@ -46,19 +43,17 @@ export async function submitProofAction(winnerId: string, formData: FormData) {
     throw new Error("Failed to upload proof. Please try again.")
   }
 
-  // 3. Get Public URL
   const {
     data: { publicUrl },
   } = supabase.storage.from("winner-proofs").getPublicUrl(filePath)
 
-  // 4. Update the winner record
   const { error: updateError } = await (supabaseAdmin.from("winners") as any)
     .update({
       proof_url: publicUrl,
-      verification_status: "pending", // Reset status to pending on re-upload
+      verification_status: "pending",
     })
     .eq("id", winnerId)
-    .eq("user_id", user.id) // Security check
+    .eq("user_id", user.id)
 
   if (updateError) {
     console.error("Database update error:", updateError)

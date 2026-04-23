@@ -20,7 +20,6 @@ export default async function DrawsPage() {
   } = await supabase.auth.getUser()
   if (!user) redirect("/login")
 
-  // 1. Fetch scores first (needed for latest draw ID)
   const [
     { data: scoresData },
     { data: profileData },
@@ -46,7 +45,6 @@ export default async function DrawsPage() {
   const profile = profileData as Profile | null
   const latestDraw = latestDrawData as Draw | null
 
-  // 2. Fetch user's entry for latest draw + past draws with entries — in parallel
   const [{ data: userEntryData }, { data: pastDrawsData }] = await Promise.all([
     latestDraw
       ? supabase
@@ -63,17 +61,14 @@ export default async function DrawsPage() {
       .order("draw_month", { ascending: false }),
   ])
 
-  // Derive entry numbers if user has 5 scores
   const userEntryNumbers =
     scores.length === 5 ? scores.map((s) => s.score) : null
 
-  // Compute next draw date (last day of current month)
   const now = new Date()
   const nextDrawDate = new Date(now.getFullYear(), now.getMonth() + 1, 0)
   const nextDrawDateStr = format(nextDrawDate, "d MMMM yyyy")
   const daysUntilDraw = Math.max(0, differenceInDays(nextDrawDate, now))
 
-  // Build past draws with the user's entry attached
   const pastDraws = ((pastDrawsData as any[]) ?? []).map((draw) => {
     const entries = (draw.draw_entries ?? []) as DrawEntry[]
     const userEntry = entries.find((e) => e.user_id === user.id) ?? null

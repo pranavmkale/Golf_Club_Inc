@@ -37,7 +37,7 @@ export default async function PublicPage() {
       {/* 2. How It Works */}
       <HowItWorks />
 
-      {/* 3. Charity Spotlight — async data, isolated Suspense boundary */}
+      {/* 3. Charity Spotlight */}
       <Suspense
         fallback={
           <div className="container mx-auto px-6 py-24">

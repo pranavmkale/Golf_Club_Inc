@@ -20,7 +20,6 @@ export default async function AdminUsersPage() {
     charities: { name: string } | null
   })[]
 
-  // Fetch total score counts per user for the table
   const { data: scoreDataResult } = await supabaseAdmin
     .from("scores")
     .select("user_id")

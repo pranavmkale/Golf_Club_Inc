@@ -16,10 +16,6 @@ export const metadata = createMetadata(
   "View your subscription status, scores, charity contributions, and draw participation."
 )
 
-/**
- * DashboardPage - Main user overview.
- * Uses parallel data fetching to optimize performance.
- */
 export default async function DashboardPage() {
   const supabase = await createClient()
   const {
@@ -30,7 +26,6 @@ export default async function DashboardPage() {
     redirect("/login")
   }
 
-  // 1. Fetch all dashboard data in parallel
   const [profileRes, scoresRes, latestDrawRes, winnersRes] = await Promise.all([
     supabase
       .from("profiles")
@@ -62,7 +57,6 @@ export default async function DashboardPage() {
   const latestDraw = latestDrawRes.data
   const winners = winnersRes.data || []
 
-  // 2. Fetch specific entry for the latest draw if it exists
   let latestEntry = null
   if (latestDraw) {
     const { data: entry } = await supabase
@@ -74,7 +68,6 @@ export default async function DashboardPage() {
     latestEntry = entry
   }
 
-  // 3. Derived Logic
   const eligible = scores.length === 5
   const entryNumbers = eligible ? deriveEntryNumbers(scores as any) : []
   const lastMonthWinner = winners.find(

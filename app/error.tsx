@@ -12,7 +12,6 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log the error to an internal tracking service (console for now)
     console.error("Application Error:", error)
   }, [error])
 

@@ -16,7 +16,6 @@ export default function ResetPasswordPage() {
     async (_: any, formData: FormData) => {
       const result = await updatePasswordAction(formData)
       if (result.success) {
-        // Redirect after successful update
         setTimeout(() => router.push("/login"), 2000)
       }
       return result

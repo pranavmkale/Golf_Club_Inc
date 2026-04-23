@@ -44,7 +44,6 @@ export default async function AdminLayout({
     <SidebarProvider>
       <AdminSidebar profile={profile} />
       <SidebarInset>
-        {/* ── Header — same sidebar-08 structure ── */}
         <header className="flex h-16 shrink-0 items-center gap-2 border-b border-border">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
@@ -55,7 +54,6 @@ export default async function AdminLayout({
             <DashboardBreadcrumb />
           </div>
           <div className="ml-auto flex items-center gap-3 px-4">
-            {/* Admin pill indicator */}
             <Badge
               variant="destructive"
               className="hidden items-center gap-1 text-[10px] tracking-widest uppercase sm:flex"
@@ -67,7 +65,6 @@ export default async function AdminLayout({
           </div>
         </header>
 
-        {/* ── Content — exact sidebar-08 content area ── */}
         <div className="flex flex-1 flex-col gap-4 px-8 pb-8">{children}</div>
       </SidebarInset>
     </SidebarProvider>

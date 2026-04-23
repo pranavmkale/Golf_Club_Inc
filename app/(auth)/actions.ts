@@ -15,9 +15,7 @@ export async function signIn(prevState: any, formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword({ email, password })
 
   if (error) {
-    // If the account exists but email isn't confirmed, auto-confirm it (dev mode)
     if (error.message === "Email not confirmed") {
-      // Look up the user by email via admin client and confirm them
       const { data: userList } = await supabaseAdmin.auth.admin.listUsers()
       const user = userList?.users?.find((u) => u.email === email)
 
@@ -26,7 +24,6 @@ export async function signIn(prevState: any, formData: FormData) {
           email_confirm: true,
         })
 
-        // Retry sign-in now that email is confirmed
         const { error: retryError } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -54,7 +51,6 @@ export async function signUp(prevState: any, formData: FormData) {
 
   const supabase = await createClient()
 
-  // 1. Sign up the user
   const { data, error: signUpError } = await supabase.auth.signUp({
     email,
     password,

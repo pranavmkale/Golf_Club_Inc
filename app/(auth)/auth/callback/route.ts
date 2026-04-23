@@ -4,7 +4,6 @@ import { createClient } from "@/lib/supabase/server"
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get("code")
-  // if "next" is in search params, use it as the redirect URL
   const next = searchParams.get("next") ?? "/dashboard"
 
   if (code) {
@@ -13,7 +12,6 @@ export async function GET(request: Request) {
     if (!error) {
       const isLocalEnv = process.env.NODE_ENV === "development"
       if (isLocalEnv) {
-        // we can be sure that origin is http://localhost:3000
         return NextResponse.redirect(`${origin}${next}`)
       } else {
         return NextResponse.redirect(`${origin}${next}`)
@@ -21,7 +19,6 @@ export async function GET(request: Request) {
     }
   }
 
-  // return the user to an error page with instructions
   return NextResponse.redirect(
     `${origin}/login?error=Could not authenticate user`
   )

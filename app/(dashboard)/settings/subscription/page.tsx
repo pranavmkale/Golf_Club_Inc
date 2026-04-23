@@ -40,13 +40,11 @@ export default async function SubscriptionPage() {
     )
   }
 
-  // Fetch real-time price info from Stripe
   const [monthlyPrice, yearlyPrice] = await Promise.all([
     stripe.prices.retrieve(priceIds.monthly),
     stripe.prices.retrieve(priceIds.yearly),
   ])
 
-  // Calculate savings
   const monthlyAnnual = (monthlyPrice.unit_amount || 0) * 12
   const yearlyAnnual = yearlyPrice.unit_amount || 0
   const savingsPercent = Math.round(
@@ -58,7 +56,6 @@ export default async function SubscriptionPage() {
     currency: monthlyPrice.currency,
   })
 
-  // Fetch subscription details from Stripe if user has active subscription
   let subscriptionDetails = null
   if (profile.subscription_status === "active" && profile.stripe_customer_id) {
     try {
