@@ -160,7 +160,7 @@ export function CharityDialog({ charity, mode, trigger }: CharityDialogProps) {
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px]">
+      <DialogContent className="sm:max-w-125">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>{mode === "add" ? "Add New Charity" : "Edit Charity"}</DialogTitle>

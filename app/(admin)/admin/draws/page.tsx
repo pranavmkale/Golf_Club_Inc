@@ -82,7 +82,7 @@ export default async function AdminDrawsPage() {
               <TableHead>Winning Numbers</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="text-right">Total Pool</TableHead>
-              <TableHead className="w-[100px]"></TableHead>
+              <TableHead className="w-25"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

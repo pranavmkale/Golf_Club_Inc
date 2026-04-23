@@ -1,4 +1,3 @@
-import { createClient } from "@/lib/supabase/server"
 import { supabaseAdmin } from "@/lib/supabase/admin"
 import type { Charity } from "@/lib/types/database"
 
@@ -44,7 +43,7 @@ export default async function AdminCharitiesPage() {
               <TableHead>Description</TableHead>
               <TableHead className="text-center">Featured</TableHead>
               <TableHead className="text-center">Status</TableHead>
-              <TableHead className="w-[100px]"></TableHead>
+              <TableHead className="w-25"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
